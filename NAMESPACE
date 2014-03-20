@@ -1,0 +1,22 @@
+import(randomForest)
+import(methods)
+import(caret)
+import(DESeq2)
+import(kernlab)
+import(edgeR)
+
+importFrom(Biobase, ExpressionSet)
+importFrom(Biobase, exprs)
+
+exportClasses("MLSeq")
+
+export(classify)
+export(predictClassify)
+
+
+exportMethods(method)
+exportMethods(deseqTransform)
+exportMethods(normalization)
+exportMethods(confusionMat)
+exportMethods(trained)
+exportMethods(ref)
