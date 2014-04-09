@@ -1,18 +1,46 @@
-import(randomForest)
 import(methods)
-import(caret)
-import(DESeq2)
-import(kernlab)
-import(edgeR)
+
+importFrom(randomForest, combine)
+
+importFrom(parallel, clusterApply)
+importFrom(parallel, clusterApplyLB)
+importFrom(parallel, clusterCall)
+importFrom(parallel, clusterEvalQ)
+importFrom(parallel, clusterExport)
+importFrom(parallel, clusterMap)
+importFrom(parallel, parApply)
+importFrom(parallel, parCapply)
+importFrom(parallel, parLapplyLB)
+importFrom(parallel, parRapply)
+importFrom(parallel, parSapply)
+importFrom(parallel, parSapplyLB)
+
+importFrom(stats, xtabs)
 
 importFrom(Biobase, ExpressionSet)
 importFrom(Biobase, exprs)
+
+importFrom(caret, train)
+importFrom(caret, confusionMatrix)
+importFrom(caret, predict.train)
+importFrom(caret, trainControl)
+importFrom(caret, bag.default)
+
+importFrom(limma, voom)
+
+importFrom(DESeq2, estimateSizeFactors)
+importFrom(DESeq2, estimateDispersions)
+importFrom(DESeq2, getVarianceStabilizedData)
+importFrom(DESeq2, counts)
+importFrom(DESeq2, plotMA)
+
+importFrom(edgeR, DGEList)
+importFrom(edgeR, calcNormFactors)
 
 exportClasses("MLSeq")
 
 export(classify)
 export(predictClassify)
-
 
 exportMethods(method)
 exportMethods(deseqTransform)

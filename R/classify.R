@@ -9,6 +9,7 @@ deseqTransform=c("vst","voom"), cv=5, rpt=10, B=100, ref=NULL, ...){
     if (class(data)[1] != "DESeqDataSet") {stop("Data should be a \"DESeqDataSet Object\" of S4 class.")}
     if (is.null(method)) {stop("Classification method is not specified.")}
     
+    
     method = match.arg(method)
     normalize = match.arg(normalize)
     deseqTransform = match.arg(deseqTransform)
@@ -18,8 +19,11 @@ deseqTransform=c("vst","voom"), cv=5, rpt=10, B=100, ref=NULL, ...){
         warning("\"vst\" transformation can be applied with \"deseq\" normalization. \"voom\" transformation is used.")
     }
     
-    if (normalize == "none") 
-    deseqTransform = "NULL"
+    if (normalize == "none") {
+        deseqTransform = "NULL"
+        warning("\"deseqTransform\" method is not used for normalize=\"none\" option")
+    }
+    
     conditions = as.factor(data$condition)
     conditions = relevel(conditions,which(levels(conditions)==ref))
     counts = counts(data)

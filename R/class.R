@@ -45,17 +45,20 @@ definition = function(object) {
 setValidity( "MLSeq", function( object ) {
     
     if (!(method(object)  %in% c("svm", "bagsvm", "randomforest", "cart")))
-    return("'method' slot must be in one of the following methods: \"svm\", \"bagsvm\", \"randomforest\", \"cart\" ")
+    return("Error: 'method' slot must be in one of the following methods: \"svm\", \"bagsvm\", \"randomforest\", \"cart\" ")
     
     if (!(normalization(object)  %in% c("deseq", "none", "tmm")))
-    return("'normalization' slot must be in one of the following: \"deseq\", \"none\", \"tmm\" ")
+    return("Error: 'normalization' slot must be in one of the following: \"deseq\", \"none\", \"tmm\" ")
     
-    if (!(deseqTransform(object)  %in% c("vst", "voom")))
-    return("'deseqTransform' slot must be in one of the following: \"vst\", \"voom\" ")
+    if (!(deseqTransform(object)  %in% c("vst", "voom", "NULL")))
+    return("Error: 'deseqTransform' slot must be in one of the following: \"vst\", \"voom\" ")
     
     if (!is.character(ref(object)))
-    return("'ref' slot must be a character ")
-
+    return("Error: 'ref' slot must be a character ")
+    
+    if ((normalization(object) == "tmm" & deseqTransform(object) == "vst"))
+    return("Warning: \"vst\" transformation can be applied only with \"deseq\" normalization. \"voom\" transformation is used. ")
+       
     TRUE
 } )
 
