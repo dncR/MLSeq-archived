@@ -46,7 +46,7 @@ library(MLSeq)
 
 After mapping the RNA-Seq reads to a reference genome or transcriptome, number of reads mapped to the reference genome can be counted to measure transcript abundance. It is very important that the count values must be raw sequencing read counts to implement the methods given in \texttt{MLSeq} package. There are a number of functions in Bioconductor packages which summarizes mapped reads to a count data format. These tools include \texttt{featureCounts} function in \texttt{Rsubread} package \cite{liao2013}, \texttt{summarizeOverlaps} function in \texttt{GenomicRanges} package \cite{lawrence2013} and \texttt{easyRNASeq} package \cite{delhomme2012}. It is also possible to access this type of count data from Linux-based softwares as \texttt{htseq-count} function in \texttt{HTSeq} \cite{htseq} and \texttt{multicov} function in \texttt{bedtools} \cite{quinlan2010} software. 
 
-In this vignette, we will work with the cervical count data. Cervical data is from an experiment that measures the expressions of 714 miRNA's of human samples \cite{witten2010}. There are 29 tumor and 29 non-tumor cervical samples and these two groups can be treated as two separete classes for classification purpose. We can define the file path with \texttt{system.file} function: 
+In this vignette, we will work with the cervical count data. Cervical data is from an experiment that measures the expression levels of 714 miRNA's of human samples \cite{witten2010}. There are 29 tumor and 29 non-tumor cervical samples and these two groups can be treated as two separete classes for classification purpose. We can define the file path with \texttt{system.file} function: 
 
 <<chunk1>>=
 filepath = system.file("extdata/cervical.txt", package = "MLSeq")
