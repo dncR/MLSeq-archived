@@ -1,13 +1,21 @@
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{MLSeq}
 
-\documentclass[11pt,draft]{article}
+\documentclass[11pt]{article}
 \usepackage[left=2.5cm, top=2.5cm, right=2.5cm, bottom=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{color}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = blue, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor   = red %Colour of citations
+}
 
 \title{\textbf{MLSeq package: Machine Learning Interface to RNA-Seq Data}}
-\author{Gokmen Zararsiz$^1$, Dincer Goksuluk$^2$, Selcuk Korkmaz$^2$, Vahap Eldem$^3$,\\ Izzet Parug Duru$^4$, Turgay Unver$^5$, Ahmet Ozturk$^5$\\[1cm]
+\author{Gokmen Zararsiz$^1$, Dincer Goksuluk$^2$, Selcuk Korkmaz$^2$, Vahap Eldem$^3$,\\ Izzet Parug Duru$^4$, Turgay Unver$^5$, Ahmet Ozturk$^1$\\[1cm]
 \small{$^1$Erciyes University, Faculty of Medicine, Department of Biostatistics, Kayseri, TURKEY}\\[0cm]
 \small{$^2$Hacettepe University, Faculty of Medicine, Department of Biostatistics, Ankara, TURKEY}\\[0cm]
 \small{$^3$Istanbul University, Faculty of Science, Department of Biology, Istanbul, TURKEY}\\[0cm]
