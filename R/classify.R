@@ -1,6 +1,6 @@
 classify <-
 function(data, method=c("svm","bagsvm","randomforest","cart"), normalize=c("deseq","none","tmm"),
-deseqTransform=c("vst","voom"), cv=5, rpt=10, B=100, ref=NULL, ...){
+deseqTransform=c("vst","voomCPM"), cv=5, rpt=10, B=100, ref=NULL, ...){
     
     if(!is.null(ref)){
     if(!is.character(ref))stop("Reference class should be \"character\"")
@@ -15,8 +15,8 @@ deseqTransform=c("vst","voom"), cv=5, rpt=10, B=100, ref=NULL, ...){
     deseqTransform = match.arg(deseqTransform)
     
     if ((normalize == "tmm" & deseqTransform == "vst")) {
-        deseqTransform = "voom"
-        warning("\"vst\" transformation can be applied with \"deseq\" normalization. \"voom\" transformation is used.")
+        deseqTransform = "voomCPM"
+        warning("\"vst\" transformation can be applied with \"deseq\" normalization. \"voom-CPM\" transformation is used.")
     }
     
     if (normalize == "none") {
@@ -67,7 +67,7 @@ deseqTransform=c("vst","voom"), cv=5, rpt=10, B=100, ref=NULL, ...){
             conditions = as.factor(dataexp[, length(dataexp)])
         }
         
-        if (deseqTransform == "voom") {
+        if (deseqTransform == "voomCPM") {
             counts = counts(data, normalized=TRUE)
             y <- DGEList(counts=counts, genes=rownames(counts))
             design <- model.matrix(~conditions)
