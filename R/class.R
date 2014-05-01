@@ -50,14 +50,14 @@ setValidity( "MLSeq", function( object ) {
     if (!(normalization(object)  %in% c("deseq", "none", "tmm")))
     return("Error: 'normalization' slot must be in one of the following: \"deseq\", \"none\", \"tmm\" ")
     
-    if (!(deseqTransform(object)  %in% c("vst", "voom", "NULL")))
-    return("Error: 'deseqTransform' slot must be in one of the following: \"vst\", \"voom\" ")
+    if (!(deseqTransform(object)  %in% c("vst", "voomCPM", "NULL")))
+    return("Error: 'deseqTransform' slot must be in one of the following: \"vst\", \"voomCPM\" ")
     
     if (!is.character(ref(object)))
     return("Error: 'ref' slot must be a character ")
     
     if ((normalization(object) == "tmm" & deseqTransform(object) == "vst"))
-    return("Warning: \"vst\" transformation can be applied only with \"deseq\" normalization. \"voom\" transformation is used. ")
+    return("Warning: \"vst\" transformation can be applied only with \"deseq\" normalization. \"voom-CPM\" transformation is used. ")
        
     TRUE
 } )
