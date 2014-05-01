@@ -9,7 +9,7 @@
 \title{\textbf{MLSeq package: Machine Learning Interface to RNA-Seq Data}}
 \author{Gokmen Zararsiz$^1,2$, Dincer Goksuluk$^3$, Selcuk Korkmaz$^3$, Vahap Eldem$^4$,\\ Izzet Parug Duru$^5$, Turgay Unver$^6$, Ahmet Ozturk$^1$\\[1cm]
 \small{$^1$Erciyes University, Faculty of Medicine, Department of Biostatistics, Kayseri, TURKEY}\\[0cm]
-\small{$^2$Erciyes University, Genome and Stem Cell Center, Division of Bioinformatics, Kayseri, TURKEY}\\[0cm]
+\small{$^2$Erciyes University, Genome and Stem Cell Center (GENKOK), Division of Bioinformatics, Kayseri, TURKEY}\\[0cm]
 \small{$^3$Hacettepe University, Faculty of Medicine, Department of Biostatistics, Ankara, TURKEY}\\[0cm]
 \small{$^4$Istanbul University, Faculty of Science, Department of Biology, Istanbul, TURKEY}\\[0cm]
 \small{$^5$Marmara University, Faculty of Science, Department of Physics, Istanbul, TURKEY}\\[0cm]
