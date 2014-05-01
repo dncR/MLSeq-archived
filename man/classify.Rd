@@ -8,7 +8,7 @@ This function fits classification algorithms to sequencing data and measures mod
 }
 \usage{
 classify(data, method = c("svm", "bagsvm", "randomforest", "cart"), normalize = c("deseq", "none", "tmm"), 
-deseqTransform = c("vst", "voom"), cv = 5, rpt = 10, B = 100, ref=NULL, ...)
+deseqTransform = c("vst", "voomCPM"), cv = 5, rpt = 10, B = 100, ref=NULL, ...)
 }
 
 \arguments{
@@ -21,7 +21,7 @@ There are four methods available to perform classification: \code{svm}: support 
 Normalization of count data for classification. \code{none}: Normalization is not applied. Count data is used for classification. \code{deseq}: deseq normalization. \code{tmm}: Trimmed mean of \code{M} values. 
 }
   \item{deseqTransform}{
-Transformation method applied after normalization.\code{vst}: variance stabilizing transformation. \code{voom}: voom transformation.
+Transformation method applied after normalization.\code{vst}: variance stabilizing transformation. \code{voomCPM}: voom transformation (log of counts-per-million).
 
 }
   \item{cv}{
@@ -40,7 +40,7 @@ Optional arguments for \code{train()} function from \code{caret} package.
 }
 }
 \details{
-In RNA-Seq studies, normalization is used to adjust between-sample differences for further analysis. In this package, "deseq" and "tmm" normalization methods are available. "deseq" estimates the size factors by dividing each sample by the geometric means of the transcript counts. "tmm" trims the lower and upper side of the data by log fold changes to minimize the log-fold changes between the samples and by absolute intensity. After normalization, it is useful to transform the data for classification. \code{MLSeq} package has "voom" and "vst" transformation methods. "voom" transformation applies a logarithmic transformation to normalized count data and computes gene weights using the mean-dispersion relationship. Second transformation method is the "vst" transformation and this approach uses an error modeling and the concept of variance stabilizing transformations to estimate the mean-dispersion relationship of data.
+In RNA-Seq studies, normalization is used to adjust between-sample differences for further analysis. In this package, "deseq" and "tmm" normalization methods are available. "deseq" estimates the size factors by dividing each sample by the geometric means of the transcript counts. "tmm" trims the lower and upper side of the data by log fold changes to minimize the log-fold changes between the samples and by absolute intensity. After normalization, it is useful to transform the data for classification. \code{MLSeq} package has "voomCPM" and "vst" transformation methods. "voomCPM" transformation applies a logarithmic transformation (log-cpm) to normalized count data and computes gene weights using the mean-dispersion relationship. Second transformation method is the "vst" transformation and this approach uses an error modeling and the concept of variance stabilizing transformations to estimate the mean-dispersion relationship of data.
 
 For model validation, k-fold cross-validation ("cv" option in \code{MLSeq} package) is a widely used technique. Using this technique, training data is randomly splitted into k non-overlapping and equally sized subsets. A classification model is trained on (k-1) subsets and tested in the remaining subsets. \code{MLSeq} package also has the repeat option as "rpt" to obtain more generalizable models. Giving a number of m repeats, cross validation concept is applied m times. 
 
