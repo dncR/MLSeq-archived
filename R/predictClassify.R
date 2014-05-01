@@ -14,7 +14,7 @@ function(model, test.data){
     conditions = test.data$condition
     
     if (normalize != "none"){
-        if (deseqTransform == "voom" & length(levels(conditions))<=1) {
+        if (deseqTransform == "voomCPM" & length(levels(conditions))<=1) {
             warning("Voom transformation can be applied only to factors with 2 or more levels. \"vst\" transformation is performed with DESeq's \"blind\" dispersion estimation method.")
             VOOM = TRUE
             deseqTransform = "vst"
@@ -50,7 +50,7 @@ function(model, test.data){
             counts = data.frame(t(exprs(test.datavst))) #normalized gene expression data
         }
         
-        if (deseqTransform == "voom" & !VOOM) {
+        if (deseqTransform == "voomCPM" & !VOOM) {
             counts = counts(test.data, normalized=TRUE)
             y <- DGEList(counts=counts, genes=rownames(counts))
             design <- model.matrix(~conditions)
