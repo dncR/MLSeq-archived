@@ -20,7 +20,7 @@
 }
 
 \details{
-\code{deseqTransform} slot stores the name of the transformation method either "vst" or "voom"	
+\code{deseqTransform} slot stores the name of the transformation method either "vst" or "voomCPM"	
 }
 
 \author{
