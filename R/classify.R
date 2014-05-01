@@ -9,7 +9,6 @@ deseqTransform=c("vst","voomCPM"), cv=5, rpt=10, B=100, ref=NULL, ...){
     if (class(data)[1] != "DESeqDataSet") {stop("Data should be a \"DESeqDataSet Object\" of S4 class.")}
     if (is.null(method)) {stop("Classification method is not specified.")}
     
-    
     method = match.arg(method)
     normalize = match.arg(normalize)
     deseqTransform = match.arg(deseqTransform)
