@@ -118,7 +118,7 @@ dim(data.train)
 dim(data.test)
 @
 
-We can now transform our training and test data to \texttt{DESeqDataSet} instance, which is the main data structure in the \texttt{MLSeq} package. For this purpose, we use the \texttt{DESeqDataSetFromMatrix} function of \texttt{DESeq2} package \cite{anders2010}:
+We can now transform our training and test data to \texttt{DESeqDataSet} instance, which is the main data structure in the \texttt{MLSeq} package. For this purpose, we use the \texttt{DESeqDataSetFromMatrix} function of \texttt{DESeq2} package \cite{love2014}:
 
 <<chunk12, message=FALSE>>=
 data.trainS4 = DESeqDataSetFromMatrix(countData = data.train,
@@ -138,9 +138,9 @@ Counts and class label information are adequate for classification analysis. How
 
 \section{Data normalization and transformation}
 
-In differential expression analysis of RNA-Seq data, it is crucial to normalize the count data to adjust between-sample differences. In our experiments, we have also seen that normalization significantly increase the performance of most classifiers. In \texttt{MLSeq} package two normalization methods are available. First one is the "deseq normalization", which estimates the size factors by dividing each sample by the geometric means of the transcript counts \cite{anders2010}. Median statistic is mostly used as a size factor for each sample. Another normalization method is "trimmed mean of M values (TMM)". TMM first trims the data in both lower and upper side by log-fold changes (default 30\%) to minimize the log-fold changes between the samples and by absolute intensity (default 5\%). After trimming, TMM calculates a normalization factor using the weighted mean of data. These weights are calculated based on the inverse approximate asymptotic variances using the delta method \cite{robinson2010}. 
+In differential expression analysis of RNA-Seq data, it is crucial to normalize the count data to adjust between-sample differences. In our experiments, we have also seen that normalization significantly increase the performance of most classifiers. In \texttt{MLSeq} package two normalization methods are available. First one is the "deseq normalization", which estimates the size factors by dividing each sample by the geometric means of the transcript counts \cite{love2014}. Median statistic is mostly used as a size factor for each sample. Another normalization method is "trimmed mean of M values (TMM)". TMM first trims the data in both lower and upper side by log-fold changes (default 30\%) to minimize the log-fold changes between the samples and by absolute intensity (default 5\%). After trimming, TMM calculates a normalization factor using the weighted mean of data. These weights are calculated based on the inverse approximate asymptotic variances using the delta method \cite{robinson2010}. 
 
-After the normalization process, it is useful to transform the data for classification analysis. There are two transformation methods available in \texttt{MLSeq} package. First one is the "voom transformation" which applies a logarithmic transformation to normalized count data and computes gene weights using the mean-dispersion relationship \cite{charity2014}. Second transformation method is the "vst transformation". This approach uses an error modeling and the concept of variance stabilizing transformations to estimate the mean-dispersion relationship of data \cite{anders2010}.
+After the normalization process, it is useful to transform the data for classification analysis. There are two transformation methods available in \texttt{MLSeq} package. First one is the "voom transformation" which applies a logarithmic transformation to normalized count data and computes gene weights using the mean-dispersion relationship \cite{charity2014}. Second transformation method is the "vst transformation". This approach uses an error modeling and the concept of variance stabilizing transformations to estimate the mean-dispersion relationship of data \cite{love2014}.
 
 If the normalization method is selected as "TMM", then \texttt{MLSeq} package automatically applies "voom" transformation. However, it is possible to select either "vst" or "voom" transformations after "deseq" normalization.
 
@@ -216,7 +216,7 @@ sessionInfo()
 \bibitem{htseq} {\color{blue}http://www-huber.embl.de/users/anders/HTSeq/doc/overview.html}
 \bibitem{quinlan2010} Quinlan AR, Hall IM (2010). BEDTools: a flexible suite of utilities for comparing genomic features. \textit{Bioinformatics}, 26(\textbf{6}):841-842.
 \bibitem{witten2010} Witten D, Tibshirani R, Gu S, et al. (2010). Ultra-high throughput sequencing-based small RNA discovery an discrete statistical biomarker analysis in a collection of cervical tumors and matched controls. \textit{BMC Biology}, 8(\textbf{58}).
-\bibitem{anders2010} Anders S, Huber W (2010). Differential expression analysis for sequence count data. \textit{Genome Biology}, 11(\textbf{10}):R106.
+\bibitem{love2014} Love MI, Huber W, Anders S (2014). Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2 \textit{Genome Biology}, 15(\textbf{12}):550.
 \bibitem{robinson2010} Robinson MD, Oshlack A (2010). A scaling normalization method for differential expression analysis of RNA-Seq data. \textit{Genome Biology}, 11:R25, doi:10.1186/gb--2010--11--3--r25.
  \bibitem{charity2014} Charity WL, Chen Y, Shi W, et al. (2014) Voom: precision weights unlock linear model analysis tools for RNA-Seq read counts, \textit{Genome Biology}, 15:R29, doi:10.1186/gb--2014--15--2--r29.
 \end{thebibliography}
