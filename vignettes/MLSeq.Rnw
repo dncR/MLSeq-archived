@@ -59,7 +59,7 @@ Next, we can load the data using \texttt{read.table} function:
 cervical = read.table(filepath, header=TRUE)
 @
 
-After loading the data, we can check the counts as follows. These counts are the number of mapped miRNA reads to each transcript.
+After loading the data, one can check the counts as follows. These counts are the number of mapped miRNA reads to each transcript.
 
 <<chunk3>>=
 head(cervical[,1:5])
