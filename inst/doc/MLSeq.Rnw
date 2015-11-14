@@ -125,7 +125,7 @@ dim(data.train)
 dim(data.test)
 @
 
-We can now transform our training and test data to \texttt{DESeqDataSet} instance, which is the main data structure in the \texttt{MLSeq} package. For this purpose, we use the \texttt{DESeqDataSetFromMatrix} function of \texttt{DESeq2} package \cite{anders2010}:
+We can now transform our training and test data to \texttt{DESeqDataSet} instance, which is the main data structure in the \texttt{MLSeq} package. For this purpose, we use the \texttt{DESeqDataSetFromMatrix} function of \texttt{DESeq2} package \cite{love2014}:
 
 <<chunk12, message=FALSE>>=
 data.trainS4 = DESeqDataSetFromMatrix(countData = data.train,
@@ -224,6 +224,7 @@ sessionInfo()
 \bibitem{quinlan2010} Quinlan AR, Hall IM (2010). BEDTools: a flexible suite of utilities for comparing genomic features. \textit{Bioinformatics}, 26(\textbf{6}):841-842.
 \bibitem{witten2010} Witten D, Tibshirani R, Gu S, et al. (2010). Ultra-high throughput sequencing-based small RNA discovery an discrete statistical biomarker analysis in a collection of cervical tumors and matched controls. \textit{BMC Biology}, 8(\textbf{58}).
 \bibitem{anders2010} Anders S, Huber W (2010). Differential expression analysis for sequence count data. \textit{Genome Biology}, 11(\textbf{10}):R106.
+\bibitem{love2014} Love MI, Huber W, Anders S (2014). Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. \textit{Genome Biology}, 15(\textbf{12}):550.
 \bibitem{robinson2010} Robinson MD, Oshlack A (2010). A scaling normalization method for differential expression analysis of RNA-Seq data. \textit{Genome Biology}, 11:R25, doi:10.1186/gb--2010--11--3--r25.
  \bibitem{charity2014} Charity WL, Chen Y, Shi W, et al. (2014) Voom: precision weights unlock linear model analysis tools for RNA-Seq read counts, \textit{Genome Biology}, 15:R29, doi:10.1186/gb--2014--15--2--r29.
 \end{thebibliography}
