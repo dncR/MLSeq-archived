@@ -50,9 +50,9 @@ data.trainS4 = DESeqDataSetFromMatrix(countData = data.train,
 colData = classtr, formula(~ condition))
 data.trainS4 = DESeq(data.trainS4, fitType="local")
 
-# Support Vector Machines (SVM) Classification
-svm = classify(data = data.trainS4, method = "svm", normalize = "deseq", deseqTransform = "vst", cv = 5, rpt = 3, ref="T")
+# Random Forest (RF) Classification
+rf = classify(data = data.trainS4, method = "randomforest", normalize = "deseq", deseqTransform = "vst", cv = 5, rpt = 3, ref="T")
 
-method(svm)
+method(rf)
 	
 }

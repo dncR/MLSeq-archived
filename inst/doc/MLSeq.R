@@ -77,9 +77,9 @@ data.testS4
 
 
 ## ----chunk14, message=FALSE, tidy.opts=list(width.cutoff=65)-------------
-svm = classify(data = data.trainS4, method = "svm", normalize = "deseq",
-               deseqTransform = "vst", cv = 5, rpt = 3, ref = "T")
-svm
+cart <- classify(data = data.trainS4, method = "cart", normalize = "deseq",
+                 deseqTransform = "vst", cv = 5, rpt = 3, ref = "T")
+cart
 
 
 ## ----chunk15-------------------------------------------------------------
@@ -94,8 +94,8 @@ rf
 
 
 ## ----chunk17, message=FALSE----------------------------------------------
-pred.svm = predictClassify(svm, data.testS4)
-pred.svm
+pred.cart = predictClassify(cart, data.testS4)
+pred.cart
 
 
 ## ----chunk18, message=FALSE----------------------------------------------
@@ -104,7 +104,12 @@ pred.rf
 
 
 ## ----chunk19-------------------------------------------------------------
-table(pred.svm, relevel(data.testS4$condition, 2))
+cart.tbl <- table(pred.cart, relevel(data.testS4$condition, 2))
+rf.tbl <- table(pred.rf, relevel(data.testS4$condition, 2))
+
+
+## ----chunk19_2-------------------------------------------------------------
+table(pred.cart, relevel(data.testS4$condition, 2))
 table(pred.rf, relevel(data.testS4$condition, 2))
 
 

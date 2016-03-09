@@ -104,7 +104,7 @@ deseqTransform=c("vst","voomCPM"), cv=5, rpt=10, B=100, ref=NULL, ...){
     
     train.pred = predict(train)
     tbl.trn = table(Predicted=train.pred, Actual=org.classes)
-    confM = confusionMatrix(tbl.trn,reference=ref)
+    confM = confusionMatrix(tbl.trn, reference=ref)
     
     result = new("MLSeq", confusionMat=confM, trained=train, method=method, normalization=normalize,
     deseqTransform=deseqTransform, ref=ref)

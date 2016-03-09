@@ -78,17 +78,17 @@ data.testS4 = DESeq(data.testS4, fitType="local")
 
 ## Number of repeats (rpt) might change model accuracies ##
 
-# Support Vector Machines (SVM) Classification
-svm = classify(data = data.trainS4, method = "svm", normalize = "deseq", deseqTransform = "vst", cv = 5, rpt = 3, ref="T")
-svm
+# Classification and Regression Tree (CART) Classification
+cart = classify(data = data.trainS4, method = "cart", normalize = "deseq", deseqTransform = "vst", cv = 5, rpt = 3, ref="T")
+cart
 
 # Random Forest (RF) Classification
 rf = classify(data = data.trainS4, method = "randomforest", normalize = "deseq", deseqTransform = "vst", cv = 5, rpt = 3, ref="T")
 rf
 
 # predicted classes of test samples for SVM method
-pred.svm = predictClassify(svm, data.testS4)
-pred.svm
+pred.cart = predictClassify(cart, data.testS4)
+pred.cart
 
 # predicted classes of test samples for RF method
 pred.rf = predictClassify(rf, data.testS4)
