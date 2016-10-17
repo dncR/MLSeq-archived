@@ -1,7 +1,7 @@
 Package: MLSeq
 Type: Package
 Title: Machine learning interface for RNA-Seq data
-Version: 1.14.0
+Version: 1.15.0
 Date: 2016-02-29
 Author: Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet
     Parug Duru, Turgay Unver, Ahmet Ozturk
