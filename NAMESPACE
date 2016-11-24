@@ -24,7 +24,6 @@ importFrom(caret, train)
 importFrom(caret, confusionMatrix)
 importFrom(caret, predict.train)
 importFrom(caret, trainControl)
-importFrom(caret, bag.default)
 
 importFrom(limma, voom)
 

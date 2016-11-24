@@ -1,8 +1,8 @@
 Package: MLSeq
 Type: Package
 Title: Machine learning interface for RNA-Seq data
-Version: 1.15.0
-Date: 2016-02-29
+Version: 1.16.0
+Date: 2016-11-24
 Author: Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet
     Parug Duru, Turgay Unver, Ahmet Ozturk
 Maintainer: Gokmen Zararsiz <gokmenzararsiz@hotmail.com>
@@ -18,4 +18,5 @@ biocViews: Sequencing, RNASeq, Classification, Clustering
 Description: This package applies several machine learning methods, including
     SVM, bagSVM, Random Forest and CART, to RNA-Seq data.
 License: GPL(>=2)
-Packaged: 2014-03-22 06:30:30 UTC; biocbuild
+Packaged: 2016-11-24 20:25:25 UTC; biocbuild
+NeedsCompilation: no
