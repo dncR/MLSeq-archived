@@ -13,7 +13,7 @@ If you use MLSeq package in your research, please cite it as below:
 
   Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug
   Duru, Turgay Unver and Ahmet Ozturk (2016). MLSeq: Machine learning
-  interface for RNA-Seq data. R package version 1.16.0
+  interface for RNA-Seq data. R package version 1.14.0
  
 To get BibTeX entry for LaTeX users, type the following:
    
