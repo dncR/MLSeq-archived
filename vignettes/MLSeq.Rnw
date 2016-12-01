@@ -19,9 +19,9 @@
 \date{}
 
 \begin{document}
-<<echo=FALSE, message=FALSE>>=
+<<echo=FALSE, message=FALSE, warning=FALSE>>=
 require(knitr)
-opts_chunk$set(cache = TRUE, dev = "pdf")
+opts_chunk$set(cache = TRUE, dev = "pdf", warning=FALSE)
 @
 
 \maketitle
