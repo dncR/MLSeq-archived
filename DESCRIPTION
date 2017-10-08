@@ -18,5 +18,4 @@ biocViews: Sequencing, RNASeq, Classification, Clustering
 Description: This package applies several machine learning methods, including
     SVM, bagSVM, Random Forest and CART, to RNA-Seq data.
 License: GPL(>=2)
-Packaged: 2016-11-24 20:25:25 UTC; biocbuild
 NeedsCompilation: no
