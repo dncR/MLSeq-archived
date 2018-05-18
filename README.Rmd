@@ -1,0 +1,44 @@
+## Introduction
+[![Build Status](http://bioconductor.org/shields/build/release/bioc/MLSeq.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/MLSeq/)
+[![Downloads](http://bioconductor.org/shields/downloads/MLSeq.svg)](http://bioconductor.org/packages/stats/bioc/MLSeq/)
+[![InBioc](http://bioconductor.org/shields/years-in-bioc/MLSeq.svg)](http://bioconductor.org/packages/devel/bioc/html/MLSeq.html#since)
+
+<br>
+
+MLSeq is an R/BIOCONDUCTOR package, which provides several algorithms including support vector machines (SVM), 
+bagging support vector machines (bagSVM), random forest (RF) and classification and regression trees (CART) 
+to classify sequencing data. To achieve this, MLSeq package requires a count table, which contains the number 
+of reads mapped to each transcript for each sample. This kind of count data can be obtained from RNA-Seq 
+experiments, also from other sequencing experiments such as DNA or ChIP-sequencing.
+
+To install the MLSeq package in R:
+
+```{r, eval = FALSE, message=FALSE, warning=FALSE}
+source("http://bioconductor.org/biocLite.R")
+biocLite("MLSeq")
+```
+
+If you use MLSeq package in your research, please cite it as below:
+
+> Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Turgay Unver and Ahmet Ozturk (2016). MLSeq: Machine Learning Interface for RNA-Seq Data. R package version 1.15.3.
+
+
+To get BibTeX entry for LaTeX users, type the following:
+
+```{r, eval = FALSE}
+citation("MLSeq")
+```
+
+<br>
+
+Please contact us, if you have any questions or suggestions:
+
+  gokmenzararsiz@hotmail.com
+
+## News:
+
+#### Version 1.15.3
+
+* Model training options are now determined using the `control` arguement within `classify(...)` function.
+* `control` arguement is a wrapper of `trainControl(...)` function from **caret** package. Any option from `trainControl(...)` can be used while fitting the classifier using `classify` function.
+* Other arguements from `train(...)` can be used within wrapper functions `classify(...)` and `predictClassify(...)`

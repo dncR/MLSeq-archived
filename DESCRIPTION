@@ -1,20 +1,45 @@
 Package: MLSeq
 Type: Package
-Title: Machine learning interface for RNA-Seq data
-Version: 1.21.0
-Date: 2016-11-25
-Author: Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Ahmet Ozturk
+Title: Machine Learning Interface for RNA-Seq Data
+Version: 2.1.1
+Date: 2018-05-14
+Author: Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Ahmet Ozturk, Ahmet Ergun Karaagaoglu
 Maintainer: Gokmen Zararsiz <gokmenzararsiz@hotmail.com>
-Depends: R (>= 3.0.0), caret, DESeq2, Biobase, limma, randomForest,
-        edgeR
+Depends:
+  caret,
+  ggplot2
 VignetteBuilder: knitr
-Suggests: knitr, e1071, kernlab, earth, ellipse, fastICA, gam, ipred,
-        klaR, MASS, mda, mgcv, mlbench, nnet, party, pls, pROC, proxy,
-        RANN, spls, affy
-Imports: methods
-Collate: class.R generics.R methods.R classify.R predictClassify.R
+Suggests:
+  knitr,
+  e1071,
+  kernlab,
+  testthat
+Imports:
+  base,
+  methods,
+  DESeq2,
+  edgeR,
+  limma,
+  Biobase,
+  SummarizedExperiment,
+  plyr,
+  foreach,
+  magrittr,
+  utils,
+  sSeq
 biocViews: Sequencing, RNASeq, Classification, Clustering
-Description: This package applies several machine learning methods, including
-    SVM, bagSVM, Random Forest and CART, to RNA-Seq data.
+Description: This package applies several machine learning methods, including SVM, bagSVM, Random Forest and CART to RNA-Seq data.
 License: GPL(>=2)
+Packaged: 2016-11-24 20:25:25 UTC; biocbuild
 NeedsCompilation: no
+RoxygenNote: 6.0.1
+Collate:
+  'all_classes.R'
+  'all_generics.R'
+  'voomFunctions.R'
+  'classify.R'
+  'helper_functions.R'
+  'predict.R'
+  'methods.R'
+  'package_and_suppl.R'
+  'plda_nblda_functions.R'
