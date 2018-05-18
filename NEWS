@@ -1,3 +1,7 @@
-# Changes in version 1.15.3
-		* New Feature
-		* New Feature
+# Major changes in version 2.x.y
+  * Functions are reconstructed using S4 systems and new classes such as `MLSeq`, `MLSeqMetaData` and `MLSeqModelInfo`.
+  * New classifiers from [caret](https://cran.r-project.org/web/packages/caret/index.html) package are now available for MLSeq. These functions can be used for transformed continuous data using one of transformation techniques which are provided by MLSeq's classification algorithms.
+  * A complete list of available classifiers can be viewed using `availableMethods()` and `printAvailableMethods()`.
+  * New setter and getter functions are included.
+  * Predictions are now evaluated usin generic function `predict(...)`. The older function `predictClassify(...)` can also be used for predictions.
+  * For more details see package manuals.

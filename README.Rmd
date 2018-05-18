@@ -5,11 +5,7 @@
 
 <br>
 
-MLSeq is an R/BIOCONDUCTOR package, which provides several algorithms including support vector machines (SVM), 
-bagging support vector machines (bagSVM), random forest (RF) and classification and regression trees (CART) 
-to classify sequencing data. To achieve this, MLSeq package requires a count table, which contains the number 
-of reads mapped to each transcript for each sample. This kind of count data can be obtained from RNA-Seq 
-experiments, also from other sequencing experiments such as DNA or ChIP-sequencing.
+MLSeq is an R/BIOCONDUCTOR package, which provides over 90 algorithms including support vector machines (SVM),random forest (RF), classification and regression trees (CART), Poisson and Negative Binomial Linear Discriminant Analysis (PLDA, NBLDA) and voom-based classifiers (voomDLDA, voomNSC, etc.) for the classification of sequencing data. MLSeq requires a count table as an input which contains the number of reads mapped to each transcript for each sample. This kind of count data can be obtained from RNA-Seq experiments, also from other sequencing experiments such as DNA or ChIP-sequencing. MLSeq includes both normalization (e.g deseq median ratio, trimmed mean of M values) and transformation (variance stabiliation transformation, regularized logarithmic transformation, etc.) techniques which can be performed through classification process. Although the main purpose of MLSeq is to classify samples using a count matrix from RNA-Sequencing data, some of the classifiers which are called sparse classifiers such as PLDA and voomNSC can be used to detect significant features. 
 
 To install the MLSeq package in R:
 
@@ -20,7 +16,7 @@ biocLite("MLSeq")
 
 If you use MLSeq package in your research, please cite it as below:
 
-> Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Turgay Unver and Ahmet Ozturk (2016). MLSeq: Machine Learning Interface for RNA-Seq Data. R package version 1.15.3.
+> Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Ahmet Ozturk and Ahmet Ergun Karaagaoglu (2018). MLSeq: Machine Learning Interface for RNA-Seq Data. R package version 2.1.0.
 
 
 To get BibTeX entry for LaTeX users, type the following:
@@ -33,12 +29,17 @@ citation("MLSeq")
 
 Please contact us, if you have any questions or suggestions:
 
-  gokmenzararsiz@hotmail.com
+  gokmenzararsiz@hotmail.com <br>
+  dincer.goksuluk@gmail.com <br>
+  selcukorkmaz@gmail.com
 
 ## News:
 
-#### Version 1.15.3
+#### Major changes in version 2.x.y
 
-* Model training options are now determined using the `control` arguement within `classify(...)` function.
-* `control` arguement is a wrapper of `trainControl(...)` function from **caret** package. Any option from `trainControl(...)` can be used while fitting the classifier using `classify` function.
-* Other arguements from `train(...)` can be used within wrapper functions `classify(...)` and `predictClassify(...)`
+* Functions are reconstructed using S4 systems and new classes such as `MLSeq`, `MLSeqMetaData` and `MLSeqModelInfo`.
+* New classifiers from [caret](https://cran.r-project.org/web/packages/caret/index.html) package are now available for MLSeq. These functions can be used for transformed continuous data using one of transformation techniques which are provided by MLSeq's classification algorithms.
+* A complete list of available classifiers can be viewed using `availableMethods()` and `printAvailableMethods()`.
+* New setter and getter functions are included.
+* Predictions are now evaluated usin generic function `predict(...)`. The older function `predictClassify(...)` can also be used for predictions.
+* For more details see package manuals.
