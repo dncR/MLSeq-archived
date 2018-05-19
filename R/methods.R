@@ -431,6 +431,7 @@ setMethod(f = "show", signature = signature(object = "MLSeq"), definition = show
 show.MLSeqModelInfo <- function(object){
   return(NULL)
 }
+
 #' @rdname show
 setMethod(f = "show", signature = signature(object = "MLSeqModelInfo"), definition = show.MLSeqModelInfo)
 
@@ -658,11 +659,20 @@ show.discrete.train <- function(object){
 #' @rdname show
 setMethod(f = "show", signature = signature(object = "discrete.train"), definition = show.discrete.train)
 
-#' @rdname print
+
+#' @title Print method for confusion matrix
+#'
+#' @description This function prints the confusion matrix of the model.
+#'
+#' @param x an object of class \code{confMat}
+#' @param mode see \code{\link[caret]{print.confusionMatrix}}
+#' @param digits see \code{\link[caret]{print.confusionMatrix}}
+#' @param \dots further arguments to be passed to \code{print.table}
+#'
 #' @method print confMat
 #' @export
 #'
-#' @export print.confMat
+#' @rdname print
 print.confMat <- function(x, ..., mode = x$mode, digits = max(3, getOption("digits") - 3)){
   cat("NOTE: The classification table given below is a table of predictions which
       are aggregated over folds by combining fold-out samples in each fold. The cell
@@ -749,6 +759,7 @@ setMethod(f = "print", signature = signature(x = "confMat"), definition = print.
 ######  3. Method for Predictions: predict(...)   ########
 
 #' @rdname predict
+#' @aliases predict,MLSeq-method
 #'
 #' @export
 setMethod(f = "predict", signature = signature(object = "MLSeq"), definition = predict.MLSeq)
@@ -759,6 +770,78 @@ setMethod(f = "predict", signature = signature(object = "MLSeq"), definition = p
 
 
 ######  5. Update method for MLSeq object: update(...)  ######
+
+#' @title Update \code{MLSeq} objects returnd from \code{classify()}
+#'
+#' @description This function updates the MLSeq object. If one of the options is changed inside MLSeq object, it should be updated
+#' to pass its effecs into classification results.
+#'
+#' @param object a model of \code{MLSeq} class returned by \code{\link{classify}}
+#' @param env an environment. Define the environment where the trained model is stored.
+#' @param ... optional arguements passed to \code{\link{classify}} function.
+#'
+#' @return same object as an MLSeq object returned from \code{classify}.
+#'
+#' @note When an \code{MLSeq} object is updated, new results are updated on the given object. The results before update process are
+#' lost when update is done. To keep the results before update, one should copy the MLSeq object to a new object in global environment.
+#'
+#' @seealso \code{\link{classify}}
+#'
+#' @examples
+#' \dontrun{
+#' library(DESeq2)
+#' data(cervical)
+#'
+#' # a subset of cervical data with first 150 features.
+#' data <- cervical[c(1:150), ]
+#'
+#' # defining sample classes.
+#' class <- data.frame(condition = factor(rep(c("N","T"), c(29, 29))))
+#'
+#' n <- ncol(data)  # number of samples
+#' p <- nrow(data)  # number of features
+#'
+#' # number of samples for test set (30% test, 70% train).
+#' nTest <- ceiling(n*0.3)
+#' ind <- sample(n, nTest, FALSE)
+#'
+#' # train set
+#' data.train <- data[ ,-ind]
+#' data.train <- as.matrix(data.train + 1)
+#' classtr <- data.frame(condition = class[-ind, ])
+#'
+#' # train set in S4 class
+#' data.trainS4 <- DESeqDataSetFromMatrix(countData = data.train,
+#'                    colData = classtr, formula(~ 1))
+#'
+#' # test set
+#' data.test <- data[ ,ind]
+#' data.test <- as.matrix(data.test + 1)
+#' classts <- data.frame(condition=class[ind, ])
+#'
+# test set in S4
+#' data.testS4 <- DESeqDataSetFromMatrix(countData = data.test,
+#'                                       colData = classts, formula(~ 1))
+#'
+#' ## Number of repeats (repeats) might change model accuracies ##
+#' # Classification and Regression Tree (CART) Classification
+#' cart <- classify(data = data.trainS4, method = "rpart",
+#'           ref = "T", preProcessing = "deseq-vst",
+#'           control = trainControl(method = "repeatedcv", number = 5,
+#'                                  repeats = 3, classProbs = TRUE))
+#' cart
+#'
+#' # Change classification model into "Random Forests" (rf)
+#' method(cart) <- "rf"
+#' rf <- update(cart)
+#'
+#' rf
+#'}
+#'
+#' @name update
+#' @rdname update
+#'
+#' @method update MLSeq
 update.MLSeq <- function(object, ..., env = .GlobalEnv){
 
   ### Use this object name to update model without using left assignment.
@@ -904,11 +987,32 @@ setMethod(f = "update", signature = signature(object = "MLSeq"), definition = up
 
 
 
-
 ######### 6. Plots ########
 # PLOT icin graphics altındaki plot(...) generic fonksiyonunu kullanalim. caret'in plot fonksiyonunu
 # maskeliyoruz kendi generic fonksiyonumuzu yazdigimiz durumda.
 
+#' @title Plot accuracy results from 'MLSeq' object
+#'
+#' @description This generic function is used to plot accuracy results from 'MLSeq' object returned by
+#' \code{classify} function.
+#'
+#' @docType methods
+#' @name plot
+#' @rdname plot
+#'
+#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus and Ahmet Ozturk
+#'
+#' @param x an \code{MLSeq} object returned from \code{classify} function.
+#' @param y this parameter is not used. Deprecated.
+#' @param ... further arguements. Deprecated.
+#'
+#' @method plot MLSeq
+#' @export
+#'
+#' @import ggplot2
+#' @importFrom graphics plot
+#' @importFrom caret 'plot.train'
+#' @importFrom grDevices rgb
 plot.MLSeq <- function(x, y, ...){
   object <- x
   object.trained <- trained(object)

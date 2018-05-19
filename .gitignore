@@ -4,5 +4,3 @@
 .Ruserdata
 ^.*\.Rproj$
 ^\.Rproj\.user$
-Notes.txt
-Example.R

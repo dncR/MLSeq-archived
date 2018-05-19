@@ -1,9 +1,99 @@
 ## voom ve NSC turu sonuclarda predict edebilmesi icin MLSeq sinifi metaData icerisine bir type argumani eklenecek
 ## Bu argumana göre predict farkli sekillerde davranacak.
 
+#' @title Extract predictions from \code{classify()} object
+#'
+#' @description  This function predicts the class labels of test data for a given model.
+#'
+#' \code{predictClassify} and \code{predict} functions return the predicted class information along with trained model.
+#' Predicted values are given either as class labels or estimated probabilities of each class for
+#' each sample. If \code{type = "raw"}, as can be seen in the example below, the predictions are
+#' extracted as raw class labels.In order to extract estimated class probabilities, one should follow the steps below:
+#' \itemize{
+#' \item set \code{classProbs = TRUE} within \code{control} arguement in \code{\link{classify}}
+#' \item set \code{type = "prob"} within \code{predictClassify}
+#' }
+#'
+#' @param object a model of \code{MLSeq} class returned by \code{\link{classify}}
+#' @param test.data a \code{DESeqDataSet} instance of new observations.
+#' @param \dots further arguments to be passed to or from methods. These arguements are used in
+#' \code{\link[caret]{predict.train}} from caret package.
+#'
+#' @return \code{MLSeqObject} an MLSeq object returned from \code{classify}. See details.
+#' @return \code{Predictions} a data frame or vector including either the predicted class
+#' probabilities or class labels of given test data.
+#'
+#' @note \code{predictClassify(...)} function was used in \code{MLSeq} up to package version 1.14.x. This function is alliased with
+#' generic function \code{predict}. In the upcoming versions of MLSeq package, \code{predictClassify} function will be ommitted. Default
+#' function for predicting new observations will be \code{predict} from version 1.16.x and later.
+#'
+#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+#'
+#' @keywords RNA-seq classification
+#'
+#' @seealso \code{\link{classify}}, \code{\link[caret]{train}}, \code{\link[caret]{trainControl}}
+#'
+#' @examples
+#' \dontrun{
+#' library(DESeq2)
+#' data(cervical)
+#'
+#' # a subset of cervical data with first 150 features.
+#' data <- cervical[c(1:150), ]
+#'
+#' # defining sample classes.
+#' class <- data.frame(condition = factor(rep(c("N","T"), c(29, 29))))
+#'
+#' n <- ncol(data)  # number of samples
+#' p <- nrow(data)  # number of features
+#'
+#' # number of samples for test set (30% test, 70% train).
+#' nTest <- ceiling(n*0.3)
+#' ind <- sample(n, nTest, FALSE)
+#'
+#' # train set
+#' data.train <- data[ ,-ind]
+#' data.train <- as.matrix(data.train + 1)
+#' classtr <- data.frame(condition = class[-ind, ])
+#'
+#' # train set in S4 class
+#' data.trainS4 <- DESeqDataSetFromMatrix(countData = data.train,
+#'                    colData = classtr, formula(~ 1))
+#'
+#' # test set
+#' data.test <- data[ ,ind]
+#' data.test <- as.matrix(data.test + 1)
+#' classts <- data.frame(condition=class[ind, ])
+#'
+# test set in S4
+#' data.testS4 <- DESeqDataSetFromMatrix(countData = data.test,
+#'                                       colData = classts, formula(~ 1))
+#'
+#' ## Number of repeats (repeats) might change model accuracies ##
+#' # Classification and Regression Tree (CART) Classification
+#' cart <- classify(data = data.trainS4, method = "rpart",
+#'           ref = "T", preProcessing = "deseq-vst",
+#'           control = trainControl(method = "repeatedcv", number = 5,
+#'                                  repeats = 3, classProbs = TRUE))
+#' cart
+#'
+#' # predicted classes of test samples for CART method (class probabilities)
+#' pred.cart = predictClassify(cart, data.testS4, type = "prob")
+#' pred.cart
+#'
+#' # predicted classes of test samples for RF method (class labels)
+#' pred.cart = predictClassify(cart, data.testS4, type = "raw")
+#' pred.cart
+#'}
+#'
+#' @name predict
+#' @rdname predict
+#'
 #' @importFrom caret predict.train
 #' @importFrom stats median
 #' @importFrom SummarizedExperiment assay mcols 'mcols<-'
+#'
+#' @method predict MLSeq
 predict.MLSeq <- function (object, test.data, ...){
   # Args:
   #   object: a model of "MLSeq" class returned by classify(...)
