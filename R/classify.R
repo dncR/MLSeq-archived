@@ -160,7 +160,7 @@ globalVariables("ii")  ## to remove warnings from 'foreach' package.
 #' @importFrom caret bagControl confusionMatrix svmBag trainControl bag train
 #' @importFrom SummarizedExperiment colData 'colData<-'
 #' @importFrom graphics segments
-
+#'
 #' @export
 classify <- function(data, method = "rpart", B = 25, ref = NULL, class.labels = NULL,
                      preProcessing = c("deseq-vst", "deseq-rlog", "deseq-logcpm", "tmm-logcpm", "logcpm"),
