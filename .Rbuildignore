@@ -4,3 +4,6 @@ Notes.txt
 Example.R
 R.gitignore
 README.Rmd
+
+# Ignored folders
+IgnoredFiles/
