@@ -9,7 +9,7 @@
 #' classification/regression algorithm built-in, approximately 85 classification algorithms are used in \code{MLSeq} for classifying
 #' gene-expression data. See \code{availableMethods()} for further information.
 #'
-#' @seealso \code{\link{availableMethods}}, \code{\link[caret]{getModelInfo}}
+#' @seealso \code{\link{availableMethods}}, \code{\link[caret:modelLookup]{getModelInfo}}
 #'
 #' \tabular{ll}{
 #'   Package: \tab MLSeq\cr

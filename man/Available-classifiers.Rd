@@ -18,7 +18,7 @@ details.}
 
 \item{regex}{a logical: should a regular expressions be used? If FALSE, a simple match is conducted against the whole name of the model.}
 
-\item{\dots}{options to pass to \code{\link[base]{grepl}}.}
+\item{\dots}{options to pass to \code{\link[base:grep]{grepl}}.}
 }
 \value{
 a requested or complete character vector of available methods.
@@ -40,5 +40,5 @@ took its place in \code{MLSeq}. Please check the available methods before fittin
 from the function \code{getModelInfo()} in \code{caret} and some of the code chunks and help texts are used here.
 }
 \seealso{
-\code{\link{classify}}, \code{\link[caret]{getModelInfo}}, \code{\link[caret]{train}}
+\code{\link{classify}}, \code{\link[caret:modelLookup]{getModelInfo}}, \code{\link[caret]{train}}
 }

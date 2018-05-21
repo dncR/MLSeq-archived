@@ -17,11 +17,11 @@
 #' is returned. Otherwise, the methods which are complete or partial matches to requested string is returned. See \code{regex} for
 #' details.
 #' @param regex a logical: should a regular expressions be used? If FALSE, a simple match is conducted against the whole name of the model.
-#' @param \dots options to pass to \code{\link[base]{grepl}}.
+#' @param \dots options to pass to \code{\link[base:grep]{grepl}}.
 #'
 #' @return a requested or complete character vector of available methods.
 #'
-#' @seealso \code{\link{classify}}, \code{\link[caret]{getModelInfo}}, \code{\link[caret]{train}}
+#' @seealso \code{\link{classify}}, \code{\link[caret:modelLookup]{getModelInfo}}, \code{\link[caret]{train}}
 #'
 #' @name Available-classifiers
 #' @rdname Available-classifiers

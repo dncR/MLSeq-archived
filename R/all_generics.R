@@ -410,9 +410,9 @@ setGeneric("confusionMat", function(object) standardGeneric("confusionMat"))
 ######## trainedModel #######
 #' Accessors for the 'trainedModel' slot.
 #'
-#' This slot stores the trained model. This object is returned from \code{train.default} function in caret package.
+#' This slot stores the trained model. This object is returned from \code{train} function in caret package.
 #' Any further request using caret functions is available for \code{trainedModel} since this object is in the
-#' same class as the returned object from \code{train.default}. See \code{\link[caret]{train.default}} for details.
+#' same class as the returned object from \code{train}. See \code{\link[caret:train]{train}} for details.
 #'
 #' @docType methods
 #' @name trained
@@ -420,7 +420,7 @@ setGeneric("confusionMat", function(object) standardGeneric("confusionMat"))
 #'
 #' @param object an \code{MLSeq} or \code{MLSeqModelInfo} object.
 #'
-#' @seealso \code{\link[caret]{train.default}}, \code{\link{voom.train-class}}, \code{\link{discrete.train-class}}
+#' @seealso \code{\link[caret:train]{train.default}}, \code{\link{voom.train-class}}, \code{\link{discrete.train-class}}
 #'
 #' @examples
 #' \dontrun{

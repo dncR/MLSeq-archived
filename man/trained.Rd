@@ -18,9 +18,9 @@ trained(object)
 \item{object}{an \code{MLSeq} or \code{MLSeqModelInfo} object.}
 }
 \description{
-This slot stores the trained model. This object is returned from \code{train.default} function in caret package.
+This slot stores the trained model. This object is returned from \code{train} function in caret package.
 Any further request using caret functions is available for \code{trainedModel} since this object is in the
-same class as the returned object from \code{train.default}. See \code{\link[caret]{train.default}} for details.
+same class as the returned object from \code{train}. See \code{\link[caret:train]{train}} for details.
 }
 \examples{
 \dontrun{
@@ -61,5 +61,5 @@ trained(cart)
 
 }
 \seealso{
-\code{\link[caret]{train.default}}, \code{\link{voom.train-class}}, \code{\link{discrete.train-class}}
+\code{\link[caret:train]{train.default}}, \code{\link{voom.train-class}}, \code{\link{discrete.train-class}}
 }

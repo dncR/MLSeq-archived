@@ -13,7 +13,7 @@ classification/regression algorithm built-in, approximately 85 classification al
 gene-expression data. See \code{availableMethods()} for further information.
 }
 \seealso{
-\code{\link{availableMethods}}, \code{\link[caret]{getModelInfo}}
+\code{\link{availableMethods}}, \code{\link[caret:modelLookup]{getModelInfo}}
 
 \tabular{ll}{
   Package: \tab MLSeq\cr
