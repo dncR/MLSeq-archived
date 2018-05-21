@@ -1,11 +1,10 @@
+# Ignored folders & files
 .Rproj.user
 .RData
 .Ruserdata
 ^.*\.Rproj$
 ^\.Rproj\.user$
-Notes.txt
-Example.R
-MLSeq.Rproj
+/IgnoredFiles/*
 
 # History files
 .Rhistory
@@ -17,5 +16,5 @@ MLSeq.Rproj
 # RStudio files
 .Rproj.user/
 .Rproj
-
+R.gitignore
 MLSeq.Rproj
