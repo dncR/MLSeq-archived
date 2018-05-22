@@ -10,8 +10,8 @@ classify(data, method = "rpart", B = 25, ref = NULL,
   "none"), control = NULL, ...)
 }
 \arguments{
-\item{data}{a \code{DESeqDataSet} object, see the constructor functions \code{\link[DESeq2:DESeqDataSet-class]{DESeqDataSet}}, \code{\link[DESeq2:DESeqDataSet-class]{DESeqDataSetFromMatrix}},
-\code{\link[DESeq2:DESeqDataSet-class]{DESeqDataSetFromHTSeqCount}} in DESeq2 package.}
+\item{data}{a \code{DESeqDataSet} object, see the constructor functions \code{\link[DESeq2:DESeqDataSet]{DESeqDataSet}}, \code{\link[DESeq2:DESeqDataSet]{DESeqDataSetFromMatrix}},
+\code{\link[DESeq2:DESeqDataSet]{DESeqDataSetFromHTSeqCount}} in DESeq2 package.}
 
 \item{method}{a character string indicating the name of classification method. Methods are implemented from the \code{caret} package.
 Run \code{availableMethods()} for a list of available methods.}

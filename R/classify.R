@@ -26,8 +26,8 @@ globalVariables("ii")  ## to remove warnings from 'foreach' package.
 #' problem. Dong et al. (2016) extended this approach into a negative binomial linear discriminant analysis (NBLDA) classifier.
 #' More detailed information can be found in referenced papers.
 #'
-#' @param data a \code{DESeqDataSet} object, see the constructor functions \code{\link[DESeq2:DESeqDataSet-class]{DESeqDataSet}}, \code{\link[DESeq2:DESeqDataSet-class]{DESeqDataSetFromMatrix}},
-#' \code{\link[DESeq2:DESeqDataSet-class]{DESeqDataSetFromHTSeqCount}} in DESeq2 package.
+#' @param data a \code{DESeqDataSet} object, see the constructor functions \code{\link[DESeq2:DESeqDataSet]{DESeqDataSet}}, \code{\link[DESeq2:DESeqDataSet]{DESeqDataSetFromMatrix}},
+#' \code{\link[DESeq2:DESeqDataSet]{DESeqDataSetFromHTSeqCount}} in DESeq2 package.
 #'
 #' @param method a character string indicating the name of classification method. Methods are implemented from the \code{caret} package.
 #' Run \code{availableMethods()} for a list of available methods.
