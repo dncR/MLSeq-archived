@@ -613,7 +613,8 @@ classify.voom <- function(data, normalize = c("deseq", "TMM", "none"), method = 
 #' @param alpha a numeric value in the interval 0 and 1. It is used to apply power transformation through PLDA method.
 #' @param truephi a numeric value. If true value of genewise dispersion is known and constant for all genes, this
 #' parameter should be used.
-#' @param foldIdx a list including the fold indexes.
+#' @param foldIdx a list including the fold indexes. Each element of this list is the vector indices of samples which are
+#' used as test set in this fold.
 #' @param parallel if TRUE, parallel computing is performed.
 #' @param ... further arguments. Deprecated.
 #'
