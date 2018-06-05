@@ -12,7 +12,9 @@ VignetteBuilder: knitr
 Suggests:
   knitr,
   testthat,
-  BiocStyle
+  BiocStyle,
+  VennDiagram,
+  pamr
 Imports:
   methods,
   DESeq2,

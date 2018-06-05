@@ -37,7 +37,9 @@ opts_chunk$set(tidy = FALSE, dev = "pdf", fig.show = "hide", message = FALSE, fi
 library(MLSeq)
 library(DESeq2)
 library(edgeR)
-@ 
+library(VennDiagram)
+library(pamr)
+@
 
 \title{\textbf{MLSeq: Machine Learning Interface to RNA-Seq Data}}
 % \bioctitle[MLSeq]{MLSeq: Machine Learning Interface to RNA-Seq Data}
@@ -68,7 +70,7 @@ library(edgeR)
 \Biocpkg{MLSeq} is a comprehensive package for application of machine-learning algorithms in classification of next-generation RNA-Sequencing (RNA-Seq) data. Researchers have appealed to \mlseq{} for various purposes, which include prediction of disease outcomes, identification of best subset of features (genes, transcripts, other isoforms), and sorting the features based on their predictive importance. Using this package, researchers can upload their raw RNA-seq count data, preprocess their data and perform a wide range of machine-learning algorithms. Preprocessing approaches include deseq median ratio and trimmed mean of M means (TMM) normalization methods, as well as the logarithm of counts per million reads (log-cpm), variance stabilizing transformation (vst), regularized logarithmic transformation (rlog) and variance modeling at observational level (voom) transformation approaches. Normalization approaches can be used to correct systematic variations. Transformation approaches can be used to bring discrete RNA-seq data hierarchically closer to microarrays and conduct microarray-based classification algorithms. Currently, \mlseq{} package contains 90 microarray-based classifiers including the recently developed voom-based discriminant analysis classifiers. Besides these classifiers, \mlseq{} package also includes discrete-based classifiers, such as Poisson linear discriminant analysis (PLDA) and negative binomial linear discriminant analysis (NBLDA). Over the preprocessed data, researchers can build classification models, apply parameter optimization on these models, evaluate the model performances and compare the performances of different classification models. Moreover, the class labels of test samples can be predicted with the built models. \mlseq{} is a user friendly, simple and currently the most comprehensive package developed in the literature for RNA-Seq classification. To start using this package, users need to  upload their count data, which contains the number of reads mapped to each transcript for each sample. This kind of count data can be obtained from RNA-Seq experiments, also from other sequencing experiments such as ChIP-sequencing or metagenome sequencing. This vignette is presented to guide researchers how to use this package.
 
 \vspace{1em}
-  
+
 \textbf{MLSeq version:} \Sexpr{packageDescription("MLSeq")$Version}
 
 % \vspace{1em}
@@ -84,7 +86,7 @@ library(edgeR)
 %     \hline
 %   \end{tabular}
 % \end{center}
-  
+
 \end{abstract}
 
 \tableofcontents
@@ -130,24 +132,24 @@ class
 
 \section{Splitting the data}
 We can split the data into two parts as training and test sets. Training set can be used to build classification models, and test set can be used to assess the performance of each model. The ratio of splitting data into two parts depends on total sample size. In most studies, the amount of training set is taken as $70\%$ and the remaining part is used as test set. However, when the number of samples is relatively small, the split ratio can be decreased towards $50\%$. Similarly, if the total number of samples are large enough (e.g 200, 500 etc.), this ratio might be increased towards $80\%$ or $90\%$. The basic idea of defining optimum splitting ratio can be expressed as: `define such a value for splitting ratio where we have enough samples in the training and test set in order to get a reliable fitted model and test predictions.' For our example, cervical data, there are 58 samples. One may select $90\%$ of the samples (approx. 52 subjects) for training set. The fitted model is evantually reliable, however, test accuracies are very sensitive to unit misclassifications. Since there are only 6 observations in the test set, misclassifying a single subject would decrease test set accuracy approximately $16.6\%$. Hence, we should carefully define the splitting ratio before continue with the classification models. \newline
- 
+
 <<data_splitting>>=
 library(DESeq2)
 
 set.seed(2128)
 
-# We do not perform a differential expression analysis to select differentially 
-# expressed genes. However, in practice, DE analysis might be performed before 
-# fitting classifiers. Here, we selected top 100 features having the highest 
+# We do not perform a differential expression analysis to select differentially
+# expressed genes. However, in practice, DE analysis might be performed before
+# fitting classifiers. Here, we selected top 100 features having the highest
 # gene-wise variances in order to decrease computational cost.
 vars <- sort(apply(cervical, 1, var, na.rm = TRUE), decreasing = TRUE)
 data <- cervical[names(vars)[1:100], ]
 nTest <- ceiling(ncol(data) * 0.3)
 ind <- sample(ncol(data), nTest, FALSE)
 
-# Minimum count is set to 1 in order to prevent 0 division problem within 
+# Minimum count is set to 1 in order to prevent 0 division problem within
 # classification models.
-data.train <- as.matrix(data[ ,-ind] + 1)  
+data.train <- as.matrix(data[ ,-ind] + 1)
 data.test <- as.matrix(data[ ,ind] + 1)
 classtr <- DataFrame(condition = class[-ind, ])
 classts <- DataFrame(condition = class[ind, ])
@@ -157,15 +159,15 @@ classts <- DataFrame(condition = class[ind, ])
 Now, we have \Sexpr{ncol(data.train)} samples which will be used to train the classification models and have remaining \Sexpr{ncol(data.test)} samples to be used to test the model performances. The training and test sets are stored in a \Rclass{DESeqDataSet} using related functions from \Biocpkg{DESeq2} \citep{love2014}. This object is then used as input for \mlseq{}. \newline
 
 <<DESeqDataSets>>=
-data.trainS4 = DESeqDataSetFromMatrix(countData = data.train, colData = classtr, 
+data.trainS4 = DESeqDataSetFromMatrix(countData = data.train, colData = classtr,
                                       design = formula(~condition))
-data.testS4 = DESeqDataSetFromMatrix(countData = data.test, colData = classts, 
+data.testS4 = DESeqDataSetFromMatrix(countData = data.test, colData = classts,
                                      design = formula(~condition))
 @
 
 
 \section{Available machine-learning models}
-\mlseq{} contains more than $90$ algorithms for the classification of RNA-Seq data. These algorithms include both microarray-based conventional classifiers and novel methods specifically designed for RNA-Seq data. These novel algorithms include voom-based classifiers \citep{Zararsiz:2017aa}, Poisson linear discriminant analysis (PLDA) \citep{Witten2011} and Negative-Binomial linear discriminant analysis (NBLDA) \citep{Dong:2016aa}. Run \Rfunction{availableMethods} for a list of supported classification algorithm in \mlseq{}. A comprehensive comparison of classifiers on RNA-Seq data can be accessed from \citep{Zararsiz:2017ab}.
+\mlseq{} contains more than $90$ algorithms for the classification of RNA-Seq data. These algorithms include both microarray-based conventional classifiers and novel methods specifically designed for RNA-Seq data. These novel algorithms include voom-based classifiers \citep{Zararsiz:2017aa}, Poisson linear discriminant analysis (PLDA) \citep{Witten2011} and Negative-Binomial linear discriminant analysis (NBLDA) \citep{Dong:2016aa}. Run \Rfunction{availableMethods} for a list of supported classification algorithm in \mlseq{}.
 
 \section{Normalization and transformation}
 Normalization is a crucial step of RNA-Seq data analysis. It can be defined as the determination and correction of the systematic variations to enable samples to be analyzed in the same scale. These systematic variations may arise from both between-sample variations including library size (sequencing depth) and the presence of majority fragments; and within-sample variations including gene length and sequence composition (GC content). In \mlseq{}, two effective normalization methods are available. First one is the ``deseq median ratio normalization'', which estimates the size factors by dividing each sample by the geometric means of the transcript counts \citep{love2014}. Median statistic is a widely used statistics as a size factor for each sample. Another normalization method is ``trimmed mean of M values (TMM)''. TMM first trims the data in both lower and upper side by log-fold changes (default $30\%$) to minimize the log-fold changes between the samples and by absolute intensity (default $5\%$). After trimming, TMM calculates a normalization factor using the weighted mean of data. These weights are calculated based on the inverse approximate asymptotic variances using the delta method \citep{robinson2010}. Raw counts might be normalized using either \texttt{deseq}-median ratio or \texttt{TMM} methods.
@@ -185,7 +187,7 @@ Although log-cpm transformation provides less-skewed distribution, the gene-wise
   \item \texttt{tmm-logcpm}: Normalization is applied with trimmed mean of M values (TMM) method. Log of counts-per-million transformation is applied to the normalized data.
 \end{itemize}
 
-The normalization-transformation combinations are controlled by \Rcode{preProcessing} argument in \Rfunction{classify}. For example, we may apply rlog transformation on deseq normalized counts by setting \Rcode{preProcessing = "deseq-rlog"}. See below code chunk for a minimal working example. 
+The normalization-transformation combinations are controlled by \Rcode{preProcessing} argument in \Rfunction{classify}. For example, we may apply rlog transformation on deseq normalized counts by setting \Rcode{preProcessing = "deseq-rlog"}. See below code chunk for a minimal working example.
 \newline
 
 <<mwe_limitations_on_continuous_classifiers, eval = FALSE, message=FALSE>>=
@@ -214,7 +216,7 @@ trained(fit)  ## Trained model summary
 We will cover trained model in section \nameref{section:optimizing_model}.
 
 \section{Model building}
-The \mlseq{} has a single function \Rfunction{classify} for the model building and evaluation process. This function can be used to evaluate selected classifier using a set of values for model parameter (aka \emph{tuning parameter}) and return the optimal model. The overall model performances for training set are also returned. 
+The \mlseq{} has a single function \Rfunction{classify} for the model building and evaluation process. This function can be used to evaluate selected classifier using a set of values for model parameter (aka \emph{tuning parameter}) and return the optimal model. The overall model performances for training set are also returned.
 
 \subsection{Optimizing model parameters}\label{section:optimizing_model}
 \mlseq{} evaluates k-fold repeated cross-validation on training set for selecting the optimal value of tuning parameter. The number of parameters to be optimized depends on the selected classifier. Some classifiers have two or more tuning parameter, while some have no tuning parameter. Suppose we want to fit RNA-Seq counts to Support Vector Machines with Radial Basis Function Kernel (svmRadial) using deseq normalization and vst transformation,
@@ -226,7 +228,7 @@ set.seed(2128)
 # Support vector machines with radial basis function kernel
 fit.svm <- classify(data = data.trainS4, method = "svmRadial",
                  preProcessing = "deseq-vst", ref = "T", tuneLength = 10,
-                 control = trainControl(method = "repeatedcv", number = 5, 
+                 control = trainControl(method = "repeatedcv", number = 5,
                                         repeats = 10, classProbs = TRUE))
 
 show(fit.svm)
@@ -279,7 +281,7 @@ Now, we fit \emph{svmRadial}, \emph{voomDLDA} and \emph{PLDA} classifiers to RNA
 <<control_svm_model_example, eval = FALSE>>=
 # Define control list
 ctrl.svm <- trainControl(method = "repeatedcv", number = 5, repeats = 1)
-ctrl.plda <- discreteControl(method = "repeatedcv", number = 5, repeats = 1, 
+ctrl.plda <- discreteControl(method = "repeatedcv", number = 5, repeats = 1,
                              tuneLength = 10)
 ctrl.voomDLDA <- voomControl(method = "repeatedcv", number = 5, repeats = 1,
                              tuneLength = 10)
@@ -290,7 +292,7 @@ fit.svm <- classify(data = data.trainS4, method = "svmRadial",
                  control = ctrl.svm)
 
 # Poisson linear discriminant analysis
-fit.plda <- classify(data = data.trainS4, method = "PLDA", normalize = "deseq", 
+fit.plda <- classify(data = data.trainS4, method = "PLDA", normalize = "deseq",
                      ref = "T", control = ctrl.plda)
 
 # Voom-based diagonal linear discriminant analysis
@@ -298,7 +300,7 @@ fit.voomDLDA <- classify(data = data.trainS4, method = "voomDLDA",
                          normalize = "deseq", ref = "T", control = ctrl.voomDLDA)
 @
 
-The fitted model for \emph{voomDLDA}, for example, is obtained using folowing codes. Since \emph{voomDLDA} has no tuning parameters, the training set accuracy is given over cross-validated folds. 
+The fitted model for \emph{voomDLDA}, for example, is obtained using folowing codes. Since \emph{voomDLDA} has no tuning parameters, the training set accuracy is given over cross-validated folds.
 \newline
 
 <<echo = FALSE>>=
@@ -324,7 +326,7 @@ Class labels of the test cases are predicted based on the model characteristics 
 
 A similar procedure is applied for the transformation of test data. If vst is selected as the transformation method, then the test set will be transformed based on the dispersion function of the training data. Otherwise, if rlog is selected as the transformation method, then the test set will be transformed based on the dispersion function, beta prior variance and the intercept of the training data.
 
-\mlseq{} predicts test samples using training set parameters. There are two functions in \mlseq{} to be used for predictions, \Rfunction{predict} and \Rfunction{predictClassify}. The latter function is an alias for the generic function \Rfunction{predict} and was used as default method in \mlseq{} up to package version 1.14.z. Default function for predicting new observations replaced with \Rfunction{predict} from version 1.16.z and later. Hence, both can be used for same purpose. 
+\mlseq{} predicts test samples using training set parameters. There are two functions in \mlseq{} to be used for predictions, \Rfunction{predict} and \Rfunction{predictClassify}. The latter function is an alias for the generic function \Rfunction{predict} and was used as default method in \mlseq{} up to package version 1.14.z. Default function for predicting new observations replaced with \Rfunction{predict} from version 1.16.z and later. Hence, both can be used for same purpose.
 
 Likely training set, test set should be given in \emph{DESeqDataSet} class. The predictions can be done using following codes,
 \newline
@@ -348,7 +350,7 @@ confusionMatrix(tbl, positive = "T")
 
 
 \section{Comparing the performance of classifiers}
-In this section, we discuss and compare the performance of the fitted models in details. Before we fit the classifiers, a random seed is set for reproducibility as \Rcode{set.seed(2128)}. Several measures, such as overall accuracy, sensitivity, specificity, etc., can be considered for comparing the model performances. We compared fitted models using overall accuracy and sparsity measures since the prevalence of positive and negative classes are equal. Sparsity is used as the measure of proportion of features used in the trained model. As sparsity goes to 0, less features are used in the classifier. Hence, the aim might be selecting a classifier which is sparser and better in predicting test samples, i.e higher in overall accuracy. 
+In this section, we discuss and compare the performance of the fitted models in details. Before we fit the classifiers, a random seed is set for reproducibility as \Rcode{set.seed(2128)}. Several measures, such as overall accuracy, sensitivity, specificity, etc., can be considered for comparing the model performances. We compared fitted models using overall accuracy and sparsity measures since the prevalence of positive and negative classes are equal. Sparsity is used as the measure of proportion of features used in the trained model. As sparsity goes to 0, less features are used in the classifier. Hence, the aim might be selecting a classifier which is sparser and better in predicting test samples, i.e higher in overall accuracy.
 
 We selected SVM, voomDLDA and NBLDA as non-sparse classifiers and PLDA with power transformation, voomNSC and NSC as sparse classifiers for the comparison of fitted models. Raw counts are normalized using \emph{deseq} method and \emph{vst} transformation is used for continuous classifiers (NSC and SVM).
 \newline
@@ -358,7 +360,7 @@ set.seed(2128)
 
 # Define control lists.
 ctrl.continuous <- trainControl(method = "repeatedcv", number = 5, repeats = 10)
-ctrl.discrete <- discreteControl(method = "repeatedcv", number = 5, repeats = 10, 
+ctrl.discrete <- discreteControl(method = "repeatedcv", number = 5, repeats = 10,
                              tuneLength = 10)
 ctrl.voom <- voomControl(method = "repeatedcv", number = 5, repeats = 10,
                              tuneLength = 10)
@@ -373,10 +375,13 @@ fit.NSC <- classify(data = data.trainS4, method = "pam",
                  control = ctrl.continuous)
 
 # 2. Discrete classifiers
-fit.plda <- classify(data = data.trainS4, method = "PLDA2", normalize = "deseq", 
+fit.plda <- classify(data = data.trainS4, method = "PLDA", normalize = "deseq",
                      ref = "T", control = ctrl.discrete)
 
-fit.nblda <- classify(data = data.trainS4, method = "NBLDA", normalize = "deseq", 
+fit.plda2 <- classify(data = data.trainS4, method = "PLDA2", normalize = "deseq",
+                     ref = "T", control = ctrl.discrete)
+
+fit.nblda <- classify(data = data.trainS4, method = "NBLDA", normalize = "deseq",
                      ref = "T", control = ctrl.discrete)
 
 # 3. voom-based classifiers
@@ -442,6 +447,66 @@ if (length(best_in_sparsity) >= 2){
 
 Among selected predictors, we can select one of them by considering overall accuracy and sparsity at the same time. Table \ref{tbl:accRes} showed that \Sexpr{best_in_acc_text} \Sexpr{ifelse(length(best_in_accuracy) >= 2, "have", "has")} the highest classification accuracy. Similarly, \Sexpr{best_in_sparsity_text} \Sexpr{ifelse(length(best_in_sparsity) >= 2, "give", "gives")} the lowest sparsity measure comparing to other classifiers. Using the performance measures from Table \ref{tbl:accRes}, one may decide the best classifier to be used in classification task.
 
+In this tutorial, we compared only few classifiers and showed how to train models and predict new samples. We should note that the model performances depends on several criterias, e.g normalization and transformation methods, gene-wise overdispersions, number of classes etc. Hence, the model accuracies given in this tutorial should not be considered as a generalization to any RNA-Seq data. However, generalized results might be considered using a simulation study under different scenarios. A comprehensive comparison of several classifiers on RNA-Seq data can be accessed from \citet{Zararsiz:2017ab}.
+
+\section{Determining possible biomarkers using sparse classifiers}
+In an RNA-Seq study, hundreds or thousands of features are able to be sequenced for a specific disease or condition. However, not all features but usually a small subset of sequenced features might be differentially expressed among classes and contribute to discrimination function. Hence, determining differentially expressed (DE) features are one of main purposes in an RNA-Seq study. It is possible to select DE features using sparse algorithm in \mlseq{} such as NSC, PLDA and voomNSC. Sparse models are able to select significant features which mostly contributes to the discrimination function by using built-in variable selection criterias. If a selected classifier is sparse, one may return selected features using getter function \Rfunction{selectedGenes}. For example, voomNSC selected $\Sexpr{round(length(selectedGenes(fit.voomNSC))/nrow(data.testS4)*100, 2)}\%$ of all features. The selected features can be extracted as below:
+\newline
+
+<<>>=
+selectedGenes(fit.voomNSC)
+@
+
+<<all_common_features, echo = FALSE>>=
+pam.final <- trained(fit.NSC)$finalModel   ## 'pamrtrained' object.
+geneIdx <- pamr:::pamr.predict(pam.final, pam.final$xData, threshold = pam.final$threshold, type = "nonzero")
+
+genes.pam <- colnames(pam.final$xData)[geneIdx]
+genes.plda <- selectedGenes(fit.plda)
+genes.plda2 <- selectedGenes(fit.plda2)
+genes.vnsc <- selectedGenes(fit.voomNSC)
+
+tmp.list <- list(genes.pam, genes.plda, genes.plda2, genes.vnsc)
+
+nn <- c(length(genes.pam), length(genes.plda), length(genes.plda2), length(genes.vnsc))
+ooo <- order(nn, decreasing = TRUE)
+
+tmp.list <- tmp.list[ooo]
+
+common <- tmp.list[[1]]
+for (i in 2:(length(tmp.list))){
+  tmp2 <- tmp.list[[i]]
+  tmp <- common[common %in% tmp2]
+  common <- tmp
+}
+@
+
+We showed selected features from sparse classifiers on a venn-diagram in Figure \ref{fig:vennDiagram}. Some of the features are common between sparse classifiers. voomNSC, PLDA, PLDA2 (Power transformed) and NSC, for example, commonly discover \Sexpr{length(common)} features as possible biomarkers.
+
+<<venn_diagram, echo = FALSE>>=
+venn.plot <- venn.diagram(
+  x = list(voomNSC = genes.vnsc, NSC = genes.pam, PLDA = genes.plda, PLDA2 = genes.plda2),
+  height = 1200, width = 1200,
+  resolution = 200,
+  filename = "Selected_features.png", imagetype = "png",
+  col = "black",
+  fill = c("khaki1", "skyblue", "tomato3", "darkolivegreen3"),
+  alpha = 0.50,
+  cat.cex = 1.2,
+  cex = 1.5,
+  cat.fontface = "bold"
+)
+@
+
+\begin{figure}[htb]
+  \includegraphics[width=0.6\linewidth]{Selected_features.png}
+  \vspace*{-10pt}
+  \caption{Venn-diagram of selected features from sparse classifiers}
+  \label{fig:vennDiagram}
+\end{figure}
+
+
+
 \section{Updating an MLSeq object using \Rfunction{update}}
 \mlseq{} is developed using S4 system in order to make it compatible with most of the BIOCONDUCTOR packages. We provide setter/getter functions to get or replace the contents of an S4 object returned from functions in \mlseq{}. Setter functions are useful when one wishes to change components of an S4 object and carry out its effect on the remaining components. For example, a setter function \Rfunction{method<-} can be used to change the classification method of a given \Rclass{MLSeq} object. See following code chunks for an example.
 \newline
@@ -453,7 +518,7 @@ ctrl <- discreteControl(method = "repeatedcv", number = 5, repeats = 2,
                         tuneLength = 10)
 
 # PLDA without power transformation
-fit <- classify(data = data.trainS4, method = "PLDA", normalize = "deseq", 
+fit <- classify(data = data.trainS4, method = "PLDA", normalize = "deseq",
                 ref = "T", control = ctrl)
 show(fit)
 @
@@ -484,7 +549,7 @@ show(fit)
 @
 
 \subsection{Transitions between continuous, discrete and voom-based classifiers}
-The control lists and some of the arguments in \Rfunction{classify} need to be specified depending on the selected classifier. This constraint should be carefully taken into account while updating an \Rclass{MLSeq} object. We may wish to move from continuous based classifier to discrete or voom-based classifier, and vice versa. Consider we want to change classifier to ``rpart'' for \Rcode{fit}. 
+The control lists and some of the arguments in \Rfunction{classify} need to be specified depending on the selected classifier. This constraint should be carefully taken into account while updating an \Rclass{MLSeq} object. We may wish to move from continuous based classifier to discrete or voom-based classifier, and vice versa. Consider we want to change classifier to ``rpart'' for \Rcode{fit}.
 \newline
 
 <<echo = TRUE, message=FALSE, error=FALSE, eval = FALSE>>=

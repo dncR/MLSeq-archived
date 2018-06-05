@@ -30,7 +30,8 @@ It does not effect NBLDA classifier.}
 \item{truephi}{a numeric value. If true value of genewise dispersion is known and constant for all genes, this
 parameter should be used.}
 
-\item{foldIdx}{a list including the fold indexes.}
+\item{foldIdx}{a list including the fold indexes. Each element of this list is the vector indices of samples which are
+used as test set in this fold.}
 
 \item{tuneLength}{a positive integer. If there is a tuning parameter in the classifier, this value
 is used to define total number of tuning parameter to be searched.}
