@@ -33,13 +33,13 @@ License: GPL(>=2)
 NeedsCompilation: no
 RoxygenNote: 6.0.1
 Collate: 
-    'all_classes.R'
-    'all_generics.R'
-    'voomFunctions.R'
-    'classify.R'
-    'helper_functions.R'
-    'predict.R'
-    'methods.R'
-    'onAttach.R'
-    'package_and_suppl.R'
-    'plda_nblda_functions.R'
+  'all_classes.R'
+  'all_generics.R'
+  'voomFunctions.R'
+  'classify.R'
+  'helper_functions.R'
+  'predict.R'
+  'methods.R'
+  'onAttach.R'
+  'package_and_suppl.R'
+  'plda_nblda_functions.R'
