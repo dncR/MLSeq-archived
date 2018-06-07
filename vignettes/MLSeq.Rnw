@@ -1,4 +1,4 @@
-%\VignetteIndexEntry{Beginner's guide to the "DESeq2" package}
+%\VignetteIndexEntry{Beginner's guide to the "MLSeq" package}
 %\VignettePackage{MLSeq}
 %\VignetteEngine{knitr::knitr}
 %\VignetteIndexEntry{MLSeq}
@@ -65,6 +65,9 @@ library(pamr)
 \begin{document}
 
 \maketitle
+
+\vspace*{10pt}
+{\color{red}{\textbf{NOTE}: \Biocpkg{MLSeq} has major changes from version \textbf{1.20.1} and this will bump following versions to \textbf{2.y.z} in the next release of Bioconductor (ver. 3.8). Most of the functions from previous versions were changed and new functions are included. Please see Beginner's Guide before continue with the analysis.\vspace*{10pt}}}
 
 \begin{abstract}
 \Biocpkg{MLSeq} is a comprehensive package for application of machine-learning algorithms in classification of next-generation RNA-Sequencing (RNA-Seq) data. Researchers have appealed to \mlseq{} for various purposes, which include prediction of disease outcomes, identification of best subset of features (genes, transcripts, other isoforms), and sorting the features based on their predictive importance. Using this package, researchers can upload their raw RNA-seq count data, preprocess their data and perform a wide range of machine-learning algorithms. Preprocessing approaches include deseq median ratio and trimmed mean of M means (TMM) normalization methods, as well as the logarithm of counts per million reads (log-cpm), variance stabilizing transformation (vst), regularized logarithmic transformation (rlog) and variance modeling at observational level (voom) transformation approaches. Normalization approaches can be used to correct systematic variations. Transformation approaches can be used to bring discrete RNA-seq data hierarchically closer to microarrays and conduct microarray-based classification algorithms. Currently, \mlseq{} package contains 90 microarray-based classifiers including the recently developed voom-based discriminant analysis classifiers. Besides these classifiers, \mlseq{} package also includes discrete-based classifiers, such as Poisson linear discriminant analysis (PLDA) and negative binomial linear discriminant analysis (NBLDA). Over the preprocessed data, researchers can build classification models, apply parameter optimization on these models, evaluate the model performances and compare the performances of different classification models. Moreover, the class labels of test samples can be predicted with the built models. \mlseq{} is a user friendly, simple and currently the most comprehensive package developed in the literature for RNA-Seq classification. To start using this package, users need to  upload their count data, which contains the number of reads mapped to each transcript for each sample. This kind of count data can be obtained from RNA-Seq experiments, also from other sequencing experiments such as ChIP-sequencing or metagenome sequencing. This vignette is presented to guide researchers how to use this package.

@@ -1,8 +1,8 @@
 Package: MLSeq
 Type: Package
 Title: Machine Learning Interface for RNA-Seq Data
-Version: 1.99.7
-Date: 2018-06-05
+Version: 1.99.8
+Date: 2018-06-07
 Author: Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Ahmet Ozturk, Ahmet Ergun Karaagaoglu
 Maintainer: Gokmen Zararsiz <gokmenzararsiz@hotmail.com>
 Depends:
@@ -32,13 +32,14 @@ Description: This package applies several machine learning methods, including SV
 License: GPL(>=2)
 NeedsCompilation: no
 RoxygenNote: 6.0.1
-Collate:
-  'all_classes.R'
-  'all_generics.R'
-  'voomFunctions.R'
-  'classify.R'
-  'helper_functions.R'
-  'predict.R'
-  'methods.R'
-  'package_and_suppl.R'
-  'plda_nblda_functions.R'
+Collate: 
+    'all_classes.R'
+    'all_generics.R'
+    'voomFunctions.R'
+    'classify.R'
+    'helper_functions.R'
+    'predict.R'
+    'methods.R'
+    'onAttach.R'
+    'package_and_suppl.R'
+    'plda_nblda_functions.R'
