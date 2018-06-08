@@ -58,5 +58,10 @@ NULL
 #' \dontrun{
 #' data(cervical)
 #' }
-
 NULL
+
+
+# vignette imports
+#' @importFrom xtable xtable print.xtable
+NULL
+
