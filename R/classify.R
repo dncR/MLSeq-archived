@@ -633,6 +633,57 @@ classify.voom <- function(data, normalize = c("deseq", "TMM", "none"), method = 
 discreteControl <- function(method = "repeatedcv", number = 5, repeats = 10, rho = NULL, rhos = NULL, beta = 1,
                             prior = NULL, alpha = NULL, truephi = NULL, foldIdx = NULL, tuneLength = 30,
                             parallel = FALSE, ...){
+
+  repeats <- ceiling(repeats)
+  number <- ceiling(number)
+
+  if (is.null(method)){
+    warning("'method' cannot be NULL. It is set to 'repeatedcv'.")
+    method <- "repeatedcv"
+  }
+  if (method != "repeatedcv"){
+    warning("Currently, only 'repeatedcv' is supported for model training. 'method' is set to 'repeatedcv'.")
+    method <- "repeatedcv"
+  }
+
+  if (number <= 0){
+    stop("'number' must be positive integer.")
+  }
+  if (repeats <= 0){
+    stop("'repeats' must be positive integer.")
+  }
+
+  if (!is.null(rho)){
+    if (any(rho < 0)){
+      stop("'rho' cannot be negative value.")
+    }
+    if (length(rho) >= 2){
+      warning("A single value should be given for 'rho'. Only the first element is used.")
+      rho <- rho[1]
+    }
+  }
+  if (!is.null(rhos) && any(rhos < 0)){
+    stop("'rhos' cannot be negative value.")
+  }
+
+  if (!is.null(prior) && (any(prior > 1) || any(prior < 0))){
+    stop("'prior' should be between 0 and 1.")
+  }
+
+  if (tuneLength <= 0){
+    stop("'tuneLength' must be positive integer and non-zero.")
+  }
+
+  if (!is.null(alpha)){
+    if (length(alpha >= 2)){
+      warning("A single value should be given for 'alpha'. Only the first element is used.")
+      alpha <- alpha[1]
+    }
+    if (alpha < 0 || alpha > 1){
+      stop("'alpha' should be between 0 and 1.")
+    }
+  }
+
   list(method = method, number = number, repeats = repeats, rho = rho, rhos = rhos, beta = beta,
        prior = prior, alpha = alpha, truephi = truephi, foldIdx = foldIdx, tuneLength = tuneLength,
        parallel = parallel, controlClass = "discrete.control", ...)

@@ -2,9 +2,14 @@ Package: MLSeq
 Type: Package
 Title: Machine Learning Interface for RNA-Seq Data
 Version: 1.99.8
-Date: 2018-06-07
-Author: Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Ahmet Ozturk, Ahmet Ergun Karaagaoglu
-Maintainer: Gokmen Zararsiz <gokmenzararsiz@hotmail.com>
+Date: 2018-06-29
+Authors@R: c(person("Gokmen", "Zararsiz", role = c("aut", "cre"), email = "gokmenzararsiz@hotmail.com"),
+  person("Dincer", "Goksuluk", role = "aut"),
+  person("Selcuk", "Korkmaz", role = "aut"),
+  person("Vahap", "Eldem", role = "aut"),
+  person(c("Izzet", "Parug"), "Duru", role = "ctb"),
+  person("Ahmet", "Ozturk", role = "aut"),
+  person(c("Ahmet", "Ergun"), "Karaagaoglu", role = c("aut", "ths")))
 Depends:
   caret,
   ggplot2
