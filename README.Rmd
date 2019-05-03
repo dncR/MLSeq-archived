@@ -10,8 +10,9 @@ MLSeq is an R/BIOCONDUCTOR package, which provides over 90 algorithms including 
 To install the MLSeq package in R:
 
 ```{r, eval = FALSE, message=FALSE, warning=FALSE}
-source("http://bioconductor.org/biocLite.R")
-biocLite("MLSeq")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("MLSeq")
 ```
 
 If you use MLSeq package in your research, please cite it as below:
