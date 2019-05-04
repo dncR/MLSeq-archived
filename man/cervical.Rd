@@ -4,7 +4,7 @@
 \name{cervical}
 \alias{cervical}
 \title{Cervical cancer data}
-\format{A data frame with 58 observations on the following 715 variables.}
+\format{A data frame with 58 observations and 714 variables (i.e miRNAs of human samples).}
 \source{
 \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2880020/#supplementary-material-sec}
 }

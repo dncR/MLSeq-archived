@@ -19,7 +19,8 @@ control(object) <- value
 \arguments{
 \item{object}{an \code{MLSeq} or \code{MLSeqModelInfo} object.}
 
-\item{value}{a character string. Select reference category for class labels.}
+\item{value}{a list with elements for controlling trained model. It should be a list returned from one of 
+\code{\link{discreteControl}}, \code{\link{voomControl}}, \code{\link[caret]{trainControl}} functions.}
 }
 \description{
 This slot stores the information about control parameters of selected classification model.
@@ -61,4 +62,7 @@ cart <- classify(data = data.trainS4, method = "rpart",
 control(cart)
 }
 
+}
+\seealso{
+\code{\link{discreteControl}}, \code{\link{voomControl}}, \code{\link[caret]{trainControl}}
 }

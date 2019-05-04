@@ -5,7 +5,6 @@
 \alias{transformation}
 \alias{transformation,MLSeq-method}
 \alias{transformation,MLSeqModelInfo-method}
-\alias{transformation}
 \title{Accessors for the 'transformation' slot.}
 \usage{
 transformation(object)

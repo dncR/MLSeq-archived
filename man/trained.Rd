@@ -5,7 +5,6 @@
 \alias{trained}
 \alias{trained,MLSeq-method}
 \alias{trained,MLSeqModelInfo-method}
-\alias{trained}
 \title{Accessors for the 'trainedModel' slot.}
 \usage{
 trained(object)

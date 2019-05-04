@@ -232,7 +232,7 @@ setClass("MLSeqMetaData",
 #' contains information on classification method, normalization and transformation used in the classification model.
 #' Lastly, the slot \code{metaData} stores the information about modified or updated slots in MLSeq object.
 #'
-#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+#' @author Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 #'
 #' @docType class
 #' @name MLSeq-class

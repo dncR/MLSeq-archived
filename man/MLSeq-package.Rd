@@ -22,15 +22,15 @@ gene-expression data. See \code{availableMethods()} for further information.
 }
 }
 \author{
-Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 
 -----------------
 
 Maintainers:
 
-Gokmen Zararsiz, \email{gokmenzararsiz@erciyes.edu.tr}
-
 Dincer Goksuluk \email{dincer.goksuluk@hacettepe.edu.tr}
+
+Gokmen Zararsiz, \email{gokmenzararsiz@erciyes.edu.tr}
 
 Selcuk Korkmaz \email{selcukorkmaz@hotmail.com}
 }

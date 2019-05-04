@@ -6,8 +6,8 @@
 \usage{
 discreteControl(method = "repeatedcv", number = 5, repeats = 10,
   rho = NULL, rhos = NULL, beta = 1, prior = NULL, alpha = NULL,
-  truephi = NULL, foldIdx = NULL, tuneLength = 30, parallel = FALSE,
-  ...)
+  truephi = NULL, foldIdx = NULL, tuneLength = 30,
+  parallel = FALSE, ...)
 }
 \arguments{
 \item{method}{validation method. Support repeated cross validation only ("repeatedcv").}
@@ -51,7 +51,7 @@ This function sets the control parameters for discrete classifiers (PLDA and NBL
 \code{\link{classify}}, \code{\link[caret]{trainControl}}, \code{\link{discreteControl}}
 }
 \author{
-Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 }
 \keyword{RNA-seq}
 \keyword{classification}

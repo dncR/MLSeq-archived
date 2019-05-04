@@ -6,7 +6,6 @@
 \alias{method<-}
 \alias{method,MLSeq-method}
 \alias{method,MLSeqModelInfo-method}
-\alias{method}
 \alias{method<-,MLSeq,character-method}
 \title{Accessors for the 'method'.}
 \usage{

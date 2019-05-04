@@ -27,7 +27,7 @@
 #' generic function \code{predict}. In the upcoming versions of MLSeq package, \code{predictClassify} function will be ommitted. Default
 #' function for predicting new observations will be \code{predict} from version 1.16.x and later.
 #'
-#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+#' @author Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 #'
 #' @keywords RNA-seq classification
 #'

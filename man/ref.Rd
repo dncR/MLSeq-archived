@@ -6,7 +6,6 @@
 \alias{ref<-}
 \alias{ref,MLSeq-method}
 \alias{ref,MLSeqModelInfo-method}
-\alias{ref}
 \alias{ref<-,MLSeq,character-method}
 \title{Accessors for the 'ref' slot.}
 \usage{

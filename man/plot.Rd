@@ -23,5 +23,5 @@ This generic function is used to plot accuracy results from 'MLSeq' object retur
 \code{classify} function.
 }
 \author{
-Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus and Ahmet Ozturk
+Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 }

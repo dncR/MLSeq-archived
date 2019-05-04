@@ -154,7 +154,7 @@ Hacettepe University, Institute of Health Sciences, June 2015.
 \code{\link{voomControl}}, \code{\link{discreteControl}}
 }
 \author{
-Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 }
 \keyword{RNA-seq}
 \keyword{classification}

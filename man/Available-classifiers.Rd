@@ -4,7 +4,6 @@
 \alias{Available-classifiers}
 \alias{availableMethods}
 \alias{printAvailableMethods}
-\alias{printAvailableMethods}
 \title{Available classification/regression methods in \code{MLSeq}}
 \usage{
 availableMethods(model = NULL, regex = TRUE, ...)

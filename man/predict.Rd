@@ -102,7 +102,7 @@ pred.cart
 \code{\link{classify}}, \code{\link[caret]{train}}, \code{\link[caret]{trainControl}}
 }
 \author{
-Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 }
 \keyword{RNA-seq}
 \keyword{classification}

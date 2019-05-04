@@ -17,15 +17,15 @@
 #'   License: \tab GPL (>= 2)\cr
 #' }
 #'
-#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+#' @author Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 #'
 #' -----------------
 #'
 #' Maintainers:
+#' 
+#' Dincer Goksuluk \email{dincer.goksuluk@hacettepe.edu.tr}
 #'
 #' Gokmen Zararsiz, \email{gokmenzararsiz@erciyes.edu.tr}
-#'
-#' Dincer Goksuluk \email{dincer.goksuluk@hacettepe.edu.tr}
 #'
 #' Selcuk Korkmaz \email{selcukorkmaz@hotmail.com}
 #'
@@ -42,7 +42,7 @@ NULL
 #' @description Cervical cancer data measures the expressions of 714 miRNAs of human samples. There are 29 tumor and 29 non-tumor cervical
 #' samples and these two groups are treated as two separete classes.
 #'
-#' @format A data frame with 58 observations on the following 715 variables.
+#' @format A data frame with 58 observations and 714 variables (i.e miRNAs of human samples).
 #'
 #' @source \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2880020/#supplementary-material-sec}
 #'

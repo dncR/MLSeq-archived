@@ -162,7 +162,7 @@ softmax = function(x, gap = FALSE){
 #' is used to define total number of tuning parameter to be searched.
 #'
 #'
-#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+#' @author Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 #'
 #' @keywords RNA-seq classification
 #'
@@ -294,8 +294,8 @@ calcNormFactorsGSD <- function(data.train, data.test, lib.size = NULL, method = 
 #' @importFrom stats lowess approxfun
 #' @importFrom limma lmFit
 voomGSD <- function(data.train, data.test, group, norm.method = c("TMM", "deseq", "none"), design = NULL, lib.size = NULL, span = 0.5){
-  #traindatayÄ±, testdatayÄ± ve trainclassÄ± alacak, method = TMM, RLE, none olacak.
-  #train ve test icin voom gibi expression ve weights dÃ¶ndÃ¼recek.
+  #traindatayi, testdatayi ve trainclassi alacak, method = TMM, RLE, none olacak.
+  #train ve test icin voom gibi expression ve weights dodurecek.
   out <- list()
   NormFactors = calcNormFactorsGSD(data.train = data.train, data.test = data.test, method = norm.method)
   TrainNormFactor = NormFactors$TrainNormFactor

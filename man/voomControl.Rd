@@ -28,7 +28,7 @@ This function sets the control parameters for voom based classifiers while train
 \code{\link{classify}}, \code{\link[caret]{trainControl}}, \code{\link{discreteControl}}
 }
 \author{
-Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 }
 \keyword{RNA-seq}
 \keyword{classification}

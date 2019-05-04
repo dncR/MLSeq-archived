@@ -5,7 +5,6 @@
 \alias{trainParameters}
 \alias{trainParameters,MLSeq-method}
 \alias{trainParameters,MLSeqModelInfo-method}
-\alias{trainParameters}
 \title{Accessors for the 'trainParameters' slot.}
 \usage{
 trainParameters(object)

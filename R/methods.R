@@ -1000,7 +1000,7 @@ setMethod(f = "update", signature = signature(object = "MLSeq"), definition = up
 #' @name plot
 #' @rdname plot
 #'
-#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus and Ahmet Ozturk
+#' @author Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 #'
 #' @param x an \code{MLSeq} object returned from \code{classify} function.
 #' @param y this parameter is not used. Deprecated.

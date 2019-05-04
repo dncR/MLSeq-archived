@@ -574,8 +574,12 @@ setGeneric("ref<-", function(object, value) standardGeneric("ref<-"))
 #'@export
 setGeneric("control", function(object) standardGeneric("control"))
 
-#' @param value a character string. Select reference category for class labels.
+#' @param value a list with elements for controlling trained model. It should be a list returned from one of 
+#' \code{\link{discreteControl}}, \code{\link{voomControl}}, \code{\link[caret]{trainControl}} functions.
 #' @rdname control
+#' 
+#' @seealso \code{\link{discreteControl}}, \code{\link{voomControl}}, \code{\link[caret]{trainControl}}
+#' 
 #' @export
 setGeneric("control<-", function(object, value) standardGeneric("control<-"))
 

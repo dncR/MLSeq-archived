@@ -6,7 +6,6 @@
 \alias{normalization<-}
 \alias{normalization,MLSeq-method}
 \alias{normalization,MLSeqModelInfo-method}
-\alias{normalization}
 \alias{normalization<-,MLSeq,character-method}
 \title{Accessors for the 'normalization' slot.}
 \usage{

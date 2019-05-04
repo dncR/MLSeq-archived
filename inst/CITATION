@@ -1,0 +1,21 @@
+citHeader("To cite MLSeq in publications use:")
+
+citEntry(entry="article",
+         title = "MLSeq: Machine learning interface for RNA-sequencing data",
+         author = personList(as.person("Dincer Goksuluk"), 
+                             as.person("Gokmen Zararsiz"),
+                             as.person("Selcuk Korkmaz"),
+                             as.person("Vahap Eldem"),
+                             as.person("Gozde Erturk Zararsiz"),
+                             as.person("Erdener Ozcetin"),
+                             as.person("Ahmet Ozturk"),
+                             as.person("Ahmet Ergun Karaagaoglu")),
+         journal = "Computer Methods and Programs in Biomedicine",
+         year = "2019",
+         volume = "175",
+         pages = "223--231",
+         url = "http://www.sciencedirect.com/science/article/pii/S0169260718318728",
+         doi = "https://doi.org/10.1016/j.cmpb.2019.04.007",
+         textVersion = paste("Goksuluk D, Zararsiz G, Korkmaz S, Eldem V, Zararsiz GE, Ozcetin E, Ozturk A, Karaagaoglu AE.",
+                             "MLSeq: Machine learning interface for RNA-sequencing data.",
+                             "Computer Methods and Programs in Biomedicine. 2019, 175:223-231."))

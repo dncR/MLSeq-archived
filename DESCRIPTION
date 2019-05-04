@@ -1,10 +1,15 @@
 Package: MLSeq
 Type: Package
 Title: Machine Learning Interface for RNA-Seq Data
-Version: 2.3.0
-Date: 2018-06-07
-Author: Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Ahmet Ozturk, Ahmet Ergun Karaagaoglu
-Maintainer: Gokmen Zararsiz <gokmenzararsiz@hotmail.com>
+Version: 2.3.1
+Date: 2019-05-04
+Authors@R: c(person("Gokmen", "Zararsiz", role = c("aut", "cre"), email = "gokmenzararsiz@hotmail.com"),
+  person("Dincer", "Goksuluk", role = "aut"),
+  person("Selcuk", "Korkmaz", role = "aut"),
+  person("Vahap", "Eldem", role = "aut"),
+  person(c("Izzet", "Parug"), "Duru", role = "ctb"),
+  person("Ahmet", "Ozturk", role = "aut"),
+  person(c("Ahmet", "Ergun"), "Karaagaoglu", role = c("aut", "ths")))
 Depends:
   caret,
   ggplot2
@@ -31,7 +36,8 @@ biocViews: ImmunoOncology, Sequencing, RNASeq, Classification, Clustering
 Description: This package applies several machine learning methods, including SVM, bagSVM, Random Forest and CART to RNA-Seq data.
 License: GPL(>=2)
 NeedsCompilation: no
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 6.1.1
 Collate: 
   'all_classes.R'
   'all_generics.R'

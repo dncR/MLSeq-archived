@@ -64,7 +64,7 @@ globalVariables("ii")  ## to remove warnings from 'foreach' package.
 #'
 #' @return an \code{MLSeq} object for trained model.
 #'
-#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+#' @author Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 #'
 #' @references
 #'
@@ -618,7 +618,7 @@ classify.voom <- function(data, normalize = c("deseq", "TMM", "none"), method = 
 #' @param parallel if TRUE, parallel computing is performed.
 #' @param ... further arguments. Deprecated.
 #'
-#' @author Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+#' @author Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 #'
 #' @keywords RNA-seq classification
 #'

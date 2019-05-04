@@ -35,5 +35,5 @@ Lastly, the slot \code{metaData} stores the information about modified or update
 \code{\link{MLSeqModelInfo-class}}, \code{\link{MLSeqMetaData-class}}
 }
 \author{
-Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Bernd Klaus, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
+Dincer Goksuluk, Gokmen Zararsiz, Selcuk Korkmaz, Vahap Eldem, Ahmet Ozturk and Ahmet Ergun Karaagaoglu
 }
