@@ -1,6 +1,5 @@
 ## Introduction
 [![Build Status](http://bioconductor.org/shields/build/release/bioc/MLSeq.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/MLSeq/)
-[![Downloads](http://bioconductor.org/shields/downloads/MLSeq.svg)](http://bioconductor.org/packages/stats/bioc/MLSeq/)
 [![InBioc](http://bioconductor.org/shields/years-in-bioc/MLSeq.svg)](http://bioconductor.org/packages/devel/bioc/html/MLSeq.html#since)
 
 <br>
@@ -10,14 +9,16 @@ MLSeq is an R/BIOCONDUCTOR package, which provides over 90 algorithms including 
 To install the MLSeq package in R:
 
 ```{r, eval = FALSE, message=FALSE, warning=FALSE}
-if (!requireNamespace("BiocManager", quietly=TRUE))
+if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
+
 BiocManager::install("MLSeq")
 ```
 
 If you use MLSeq package in your research, please cite it as below:
 
-> Gokmen Zararsiz, Dincer Goksuluk, Selcuk Korkmaz, Vahap Eldem, Izzet Parug Duru, Ahmet Ozturk and Ahmet Ergun Karaagaoglu (2018). MLSeq: Machine Learning Interface for RNA-Seq Data. R package version 2.1.0.
+> Goksuluk D, Zararsiz G, Korkmaz S, Eldem V, Zararsiz GE, Ozcetin E, Ozturk A, Karaagaoglu AE. MLSeq: Machine
+  learning interface for RNA-sequencing data. Computer Methods and Programs in Biomedicine. 2019, 175:223-231.
 
 
 To get BibTeX entry for LaTeX users, type the following:
